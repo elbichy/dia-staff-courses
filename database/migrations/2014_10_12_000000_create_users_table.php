@@ -17,18 +17,18 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('fullname');
             $table->unsignedBigInteger('service_number')->unique();
-            $table->string('username')->unique();
             $table->string('email')->unique();
-            $table->string('gender');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->boolean('isRecord')->default(0);
-            $table->boolean('isAccount')->default(0);
-            $table->boolean('isNurse')->default(0);
-            $table->boolean('isDoctor')->default(0);
-            $table->boolean('isLab')->default(0);
-            $table->boolean('isPhamacy')->default(0);
+            $table->string('gender')->nullable();
+            $table->string('directorate')->nullable();
+            $table->dateTime('dob')->nullable();
+            $table->dateTime('doe')->nullable();
+            $table->integer('level')->nullable();
+            $table->string('category')->nullable();
+            $table->boolean('isAdmin')->default(0);
+            $table->boolean('isStaff')->default(0);
             $table->timestamps();
         });
     }
