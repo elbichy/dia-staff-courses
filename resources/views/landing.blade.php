@@ -37,9 +37,9 @@
 	<div class="app" style="display:flex; flex-direction:column; justify-content:center; align-items:center;">
 		<div class="card form_wrap">
 			<div class="heading">
-				<img src="{{ asset('storage/pdfLogo.png') }}" alt="logo" width="100px" height="100px">
-				<h6 class="">Lt. Gen. A.B Dambazau</h6>
-				<p class="">Med. Centre Management Platform</p>
+				<img src="{{ asset('storage/adminlogo.png') }}" alt="logo" width="100px" height="100px">
+				<h6 class="">Defence Intelligence Agency</h6>
+				<p class="">Staff Courses Management Platform</p>
 			</div>
 			<form action="{{ route('login') }}" method="POST" class="form row" id="login_form">
 				@csrf

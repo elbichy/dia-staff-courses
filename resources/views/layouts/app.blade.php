@@ -72,26 +72,6 @@
                             <i class="fas fa-money-bill-alt"></i> Account Unit
                         </h6>
                     @endif
-                    @if(auth()->user()->isNurse)
-                        <h6 class="left" style=" width: auto; margin: 0 0 0 10%; height:100%; text-align: center; ">
-                            <i class="fas fa-user-nurse"></i> Nurses Unit
-                        </h6>
-                    @endif
-                    @if(auth()->user()->isDoctor)
-                        <h6 class="left" style=" width: auto; margin: 0 0 0 10%; height:100%; text-align: center; ">
-                            <i class="fas fa-user-md"></i> Doctors Unit
-                        </h6>
-                    @endif
-                    @if(auth()->user()->isLab)
-                        <h6 class="left" style=" width: auto; margin: 0 0 0 10%; height:100%; text-align: center; ">
-                            <i class="fas fa-syringe"></i> Lab Unit
-                        </h6>
-                    @endif
-                    @if(auth()->user()->isPhamacy)
-                        <h6 class="left" style=" width: auto; margin: 0 0 0 10%; height:100%; text-align: center; ">
-                            <i class="fas fa-pills"></i> Lab Unit
-                        </h6>
-                    @endif
 
                     {{-- OTHER MENU RIGHT --}}
                     <a href="#" data-target="slide-out" class="sidenav-trigger hide-on-med-and-up right"><i class="material-icons">menu</i></a>
@@ -126,69 +106,63 @@
                         </a>
 
                         {{-- BUSINESS LOGO --}}
-                        <a href="#user"><img class="circle" src="{{asset('storage/nscdclargelogo.png')}}"></a>
+                        <a href="#user"><img class="circle" src="{{asset('storage/dia-logo.png')}}"></a>
                     
                         {{-- BUSINESS NAME --}}
                         <a href="#name"><span class="white-text name">
-                            Lt. Gen. A.B Dambazau Medical Centre
+                            Defence Intelligence Agency
                         </span></a>
 
                         {{-- BUSINESS BRANCH AND ADDRESS --}}
-                        <a href="#email"><span class="white-text email"> Management Platform</span></a>
+                        <a href="#email"><span class="white-text email">Staff Courses Management Platform</span></a>
                     </div>
                 </li>
 
                 {{-- THE SIDEBAR PROPER --}}
                 <li class="{{(request()->segment(1) == 'dashboard' && request()->segment(2) == NULL) ? 'active' : ''}}">
-                    <a href="/dashboard"><i class="material-icons">dashboard</i>DASHBOARD</a>
+                    <a href="/dashboard"><i class="fas fa-tachometer-alt white-text fa-2x"></i>DASHBOARD</a>
                 </li>
-                
+                {{-- PERSONNEL --}}
                 <li class="no-padding">
                     <ul class="collapsible collapsible-accordion">
-                    <li class="{{ request()->segment(2) == 'patient' ? 'active' : '' }}">
+                    <li class="{{ request()->segment(2) == 'personnel' ? 'active' : '' }}">
                         <a style="padding:0 32px;" class="collapsible-header">
-                            <i class="material-icons">person</i>PATIENTS<i class="material-icons right">arrow_drop_down</i>
+                            <i class="fas fa-users white-text fa-2x"></i>PERSONNEL<i class="material-icons right">arrow_drop_down</i>
                         </a>
                         <div class="collapsible-body">
                         <ul>
-                            @if(auth()->user()->isRecord)
-                                <li class="{{(request()->segment(3) == 'new') ? 'active' : ''}}">
-                                    <a href="/dashboard/patient/new">New Patient</a>
-                                </li>
-                                <li class="{{(request()->segment(3) == 'pending-payment') ? 'active' : ''}}">
-                                    <a href="/dashboard/patient/pending-payment">Pending Payment</a>
-                                </li>
-                            @endif
-
+                            <li class="{{(request()->segment(3) == 'new') ? 'active' : ''}}">
+                                <a href="/dashboard/personnel/new">Register New</a>
+                            </li>
                             <li class="{{(request()->segment(3) == 'all') ? 'active' : ''}}">
-                                <a href="/dashboard/patient/all">All Patients</a>
+                                <a href="/dashboard/personnel/all">All Personnel</a>
                             </li>
                             <li class="{{(request()->segment(3) == 'statistics') ? 'active' : ''}}">
-                                <a href="/dashboard/patient/statistics">Statistics</a>
+                                <a href="/dashboard/personnel/statistics">Statistics</a>
                             </li>
                         </ul>
                         </div>
                     </li>
                     </ul>
                 </li>
+
+                {{-- COURSES --}}
                 <li class="no-padding">
                     <ul class="collapsible collapsible-accordion">
-                    <li class="{{ (request()->segment(2) == 'treatment') ? 'active' : '' }}">
+                    <li class="{{ request()->segment(2) == 'courses' ? 'active' : '' }}">
                         <a style="padding:0 32px;" class="collapsible-header">
-                            <i class="material-icons">local_hospital</i>TREATMENT<i class="material-icons right">arrow_drop_down</i>
+                            <i class="fas fa-file-signature white-text fa-2x"></i>COURSES<i class="material-icons right">arrow_drop_down</i>
                         </a>
                         <div class="collapsible-body">
                         <ul>
-                            @if(auth()->user()->isRecord)
-                                <li class="{{(request()->segment(3) == 'initiate') ? 'active' : ''}}">
-                                    <a href="/dashboard/treatment/initiate">Initiate Treatment</a>
-                                </li>
-                            @endif
-                            <li class="{{(request()->segment(3) == 'active') ? 'active' : ''}}">
-                                <a href="/dashboard/treatment/active">Active/Pending</a>
+                            <li class="{{(request()->segment(3) == 'new') ? 'active' : ''}}">
+                                <a href="/dashboard/courses/new">Register New</a>
                             </li>
-                            <li class="{{(request()->segment(3) == 'completed') ? 'active' : ''}}">
-                                <a href="/dashboard/treatment/completed">Completed</a>
+                            <li class="{{(request()->segment(3) == 'all') ? 'active' : ''}}">
+                                <a href="/dashboard/courses/all">All Courses</a>
+                            </li>
+                            <li class="{{(request()->segment(3) == 'statistics') ? 'active' : ''}}">
+                                <a href="/dashboard/courses/statistics">Statistics</a>
                             </li>
                         </ul>
                         </div>

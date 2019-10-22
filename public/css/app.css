@@ -17,7 +17,7 @@ html {
 body {
   width: 100%;
   height: 100%;
-  background-image: url("/storage/bg.jpg");
+  background-image: url("/storage/HQ-VECTOR.jpg");
   background-color: #cccccc;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -152,7 +152,7 @@ table tbody tr td .recieptBtn {
   width: 25%;
   height: auto;
   padding: 20px;
-  background: rgba(255, 255, 255, 0.7) !important;
+  background: rgba(255, 255, 255, 0.8) !important;
 }
 
 .app .form_wrap .heading {

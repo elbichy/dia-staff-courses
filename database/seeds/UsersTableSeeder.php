@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+use Carbon\Carbon;
+
 class UsersTableSeeder extends Seeder
 {
     /**
@@ -20,12 +22,12 @@ class UsersTableSeeder extends Seeder
                 'password' => Hash::make('@Suleimanu1'),
                 'gender' => 'male',
                 'directorate' => 'Admin',
-                'dob' => '',
-                'doe' => '',
+                'dob' => Carbon::create(1992,01,27,0),
+                'doe' => Carbon::create(1992,01,27,0),
                 'level' => '9',
                 'category' => 'Senior',
-                'isAdmin' => 1,
-                'isStaff' => 0
+                'isAdmin' => 0,
+                'isStaff' => 1
             ],
             [
                 'fullname' => 'Usman Shehu',
@@ -34,8 +36,8 @@ class UsersTableSeeder extends Seeder
                 'password' => Hash::make('@Suleimanu1'),
                 'gender' => 'male',
                 'directorate' => 'Admin',
-                'dob' => '',
-                'doe' => '',
+                'dob' => Carbon::create(1992,01,27,0),
+                'doe' => Carbon::create(1992,01,27,0),
                 'level' => '9',
                 'category' => 'Senior',
                 'isAdmin' => 1,

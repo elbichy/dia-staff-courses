@@ -23,8 +23,8 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->string('gender')->nullable();
             $table->string('directorate')->nullable();
-            $table->dateTime('dob')->nullable();
-            $table->dateTime('doe')->nullable();
+            $table->dateTime('dob');
+            $table->dateTime('doe');
             $table->integer('level')->nullable();
             $table->string('category')->nullable();
             $table->boolean('isAdmin')->default(0);
