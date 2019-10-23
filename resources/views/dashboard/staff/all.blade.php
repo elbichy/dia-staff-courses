@@ -9,7 +9,7 @@
 
                 {{-- SALES TABLE --}}
                 <div class="sectionTableWrap z-depth-1">
-                    <table class="table centered table-bordered" id="users-table">
+                    <table class="table table-bordered" id="users-table">
                         <thead>
                             <tr>
                                 <th>SN</th>
