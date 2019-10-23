@@ -5,7 +5,7 @@
 		<div class="content-container white">
 			<div class="sectionWrap">
 				{{-- Shows records restricted info --}}
-				@includeWhen(auth()->user()->isStaff, 'dashboard.extended.dashboard')
+				@includeWhen(!auth()->user()->isAdmin, 'dashboard.extended.dashboard')
 
 				{{-- Shows account restricted info --}}
 				@includeWhen(auth()->user()->isAccount, 'dashboard.extended.account')

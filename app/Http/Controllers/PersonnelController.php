@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Alert;
+use Yajra\DataTables\Facades\DataTables;
 
 class PersonnelController extends Controller
 {
@@ -18,8 +19,23 @@ class PersonnelController extends Controller
      */
     public function index()
     {
-        $personnel = User::all();
-        return view('dashboard.staff.all', compact(['personnel']));
+        return view('dashboard.staff.all');
+    }
+
+    public function get_all(){
+        $personnel = User::orderBy('created_at', 'DESC')->get();
+        return DataTables::of($personnel)
+                ->editColumn('created_at', function ($personnel) {
+                    return $personnel->created_at->toFormattedDateString();
+                })
+                ->addColumn('view', function($personnel) {
+                    return '
+                        <a href="/personnel/'.$personnel->id.'/edit" style="margin-right:10px;" class="blue-text"><i class="small material-icons">edit</i></a>
+                        <a href="/personnel/'.$personnel->id.'/download" class="green-text"><i class="small material-icons">cloud_download</i></a>
+                    ';
+                })
+                ->rawColumns(['view'])
+                ->make();
     }
 
     /**
