@@ -25,10 +25,9 @@ class CreateUsersTable extends Migration
             $table->string('directorate')->nullable();
             $table->dateTime('dob');
             $table->dateTime('doe');
-            $table->integer('level')->nullable();
+            $table->integer('gl')->nullable();
             $table->string('category')->nullable();
             $table->boolean('isAdmin')->default(0);
-            $table->boolean('isStaff')->default(0);
             $table->timestamps();
         });
     }

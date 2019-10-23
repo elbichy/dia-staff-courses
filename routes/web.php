@@ -27,17 +27,17 @@ Route::group(['prefix' => 'dashboard'], function () {
 
 	// ALL PERSONNEL ROUTES
 	Route::group(['prefix' => 'personnel'], function () {
-		Route::get('/new', 'PersonnelController@new')->name('records_new');
-		Route::post('/new/store', 'PersonnelController@store')->name('records_store_new');
-		Route::get('/all', 'PersonnelController@all')->name('records_all');
+		Route::get('/all', 'PersonnelController@index')->name('records_all');
+		Route::get('/new', 'PersonnelController@create')->name('personnel_new');
+		Route::post('/new/store', 'PersonnelController@store')->name('personnel_store_new');
 		Route::get('/statistics', 'PersonnelController@statistics')->name('records_statistics');
 	});
 
 	// ALL CORSES ROUTES
 	Route::group(['prefix' => 'courses'], function () {
-		Route::get('/new', 'CourseController@new')->name('records_new');
+		Route::get('/all', 'CourseController@index')->name('records_all');
+		Route::get('/new', 'CourseController@create')->name('records_new');
 		Route::post('/new/store', 'CourseController@store')->name('records_store_new');
-		Route::get('/all', 'CourseController@all')->name('records_all');
 		Route::get('/statistics', 'CourseController@statistics')->name('records_statistics');
 	});
 	

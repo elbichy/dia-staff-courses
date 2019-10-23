@@ -24,10 +24,9 @@ class UsersTableSeeder extends Seeder
                 'directorate' => 'Admin',
                 'dob' => Carbon::create(1992,01,27,0),
                 'doe' => Carbon::create(1992,01,27,0),
-                'level' => '9',
+                'gl' => '9',
                 'category' => 'Senior',
-                'isAdmin' => 0,
-                'isStaff' => 1
+                'isAdmin' => 0
             ],
             [
                 'fullname' => 'Usman Shehu',
@@ -38,10 +37,9 @@ class UsersTableSeeder extends Seeder
                 'directorate' => 'Admin',
                 'dob' => Carbon::create(1992,01,27,0),
                 'doe' => Carbon::create(1992,01,27,0),
-                'level' => '9',
+                'gl' => '9',
                 'category' => 'Senior',
-                'isAdmin' => 1,
-                'isStaff' => 0
+                'isAdmin' => 1
             ]
         ];
     

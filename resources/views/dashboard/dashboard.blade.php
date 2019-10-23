@@ -5,16 +5,10 @@
 		<div class="content-container white">
 			<div class="sectionWrap">
 				{{-- Shows records restricted info --}}
-				@includeWhen(auth()->user()->isRecord, 'dashboard.extended.records')
+				@includeWhen(auth()->user()->isStaff, 'dashboard.extended.dashboard')
 
 				{{-- Shows account restricted info --}}
 				@includeWhen(auth()->user()->isAccount, 'dashboard.extended.account')
-				
-				{{-- Shows account restricted info --}}
-				@includeWhen(auth()->user()->isNurse, 'dashboard.extended.nurse')
-				
-				{{-- Shows account restricted info --}}
-				@includeWhen(auth()->user()->isDoctor, 'dashboard.extended.doctor')
 			</div>
 		</div>
 		<div class="footer z-depth-1">

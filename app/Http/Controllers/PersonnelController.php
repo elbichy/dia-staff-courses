@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Course;
 use App\Personnel;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Alert;
 
 class PersonnelController extends Controller
 {
@@ -14,7 +18,8 @@ class PersonnelController extends Controller
      */
     public function index()
     {
-        //
+        $personnel = User::all();
+        return view('dashboard.staff.all', compact(['personnel']));
     }
 
     /**
@@ -24,7 +29,7 @@ class PersonnelController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.staff.new');
     }
 
     /**
@@ -35,7 +40,40 @@ class PersonnelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        // abort_unless(auth()->user()->isAdmin, 403, 'You are not authorised to view this page!');
+        $validation = $request->validate([
+            'service_number' => 'required|numeric',
+            'fullname' => 'required|string',
+            'email' => 'required|string',
+            'password' => 'required|string',
+            'dob' => 'required|date',
+            'gender' => 'required|string',
+            'doe' => 'required|date',
+            'gl' => 'required|numeric',
+            'category' => 'required|string',
+            'directorate' => 'required|string',
+            'isAdmin' => 'required|numeric'
+        ]);
+
+        $personnel = User::create([
+            'service_number' => $request->service_number,
+            'fullname' => $request->fullname,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'dob' => $request->dob,
+            'gender' => $request->gender,
+            'doe' => $request->doe,
+            'gl' => $request->gl,
+            'category' => $request->category,
+            'directorate' => $request->directorate,
+            'isAdmin' => $request->isAdmin
+        ]);
+
+        if($personnel){
+            Alert::success('Personnel record added successfully!', 'Success!')->autoclose(2500);
+            return redirect()->route('personnel_new');
+        }
     }
 
     /**
@@ -81,5 +119,9 @@ class PersonnelController extends Controller
     public function destroy(Personnel $personnel)
     {
         //
+    }
+
+    public function statistics(){
+
     }
 }
