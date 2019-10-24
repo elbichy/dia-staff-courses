@@ -9,16 +9,16 @@
 
                 {{-- SALES TABLE --}}
                 <div class="sectionTableWrap z-depth-1">
-                    <table class="table table-bordered" id="users-table">
+                    <table class="table centered table-bordered" id="users-table">
                         <thead>
                             <tr>
                                 <th>SN</th>
                                 <th>Fullname</th>
-                                <th>Service No</th>
-                                <th>Grade Level</th>
-                                <th>Email</th>
-                                <th>Date of Birth</th>
                                 <th>Gender</th>
+                                <th>Service No</th>
+                                <th>GL</th>
+                                <th>Categoty</th>
+                                <th>Directorate</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="footer z-depth-1">
-            <p>&copy; NSCDC ICT & Cybersecurity Department</p>
+            <p>&copy; Defence Intelligence Agency</p>
         </div>
     </div>
 @endsection
@@ -61,11 +61,12 @@
                         }, "orderable": false, "searchable": false
                     },
                     { data: 'fullname', name: 'fullname' },
+                    { data: 'gender', name: 'view', "orderable": false, "searchable": false},
                     { data: 'service_number', name: 'service_number'},
                     { data: 'gl', name: 'gl'},
-                    { data: 'email', name: 'email'},
-                    { data: 'dob', name: 'dob'},
-                    { data: 'gender', name: 'view', "orderable": false, "searchable": false}
+                    { data: 'category', name: 'category'},
+                    { data: 'directorate', name: 'directorate'},
+                    { data: 'view', name: 'view', "orderable": false, "searchable": false}
                 ]
             });
             $('.dataTables_length > label > select').addClass('browser-default');

@@ -45,13 +45,13 @@
 				@csrf
 				<div class="input-field col s12">
 					<i class="material-icons prefix">person</i>
-					<input id="service_number" name="service_number" type="number" required autofocus>
-					@if ($errors->has('service_number'))
+					<input id="username" name="username" type="text" required autofocus>
+					@if ($errors->has('username'))
 						<span class="helper-text red-text">
-							<strong>{{ $errors->first('service_number') }}</strong>
+							<strong>{{ $errors->first('username') }}</strong>
 						</span>
 					@endif
-					<label for="service_number">{{ __('Service No') }}</label>
+					<label for="username">{{ __('Username') }}</label>
 				</div>
 				<div class="input-field col s12">
 					<i class="material-icons prefix">vpn_key</i>

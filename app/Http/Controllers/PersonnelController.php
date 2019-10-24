@@ -30,8 +30,7 @@ class PersonnelController extends Controller
                 })
                 ->addColumn('view', function($personnel) {
                     return '
-                        <a href="/personnel/'.$personnel->id.'/edit" style="margin-right:10px;" class="blue-text"><i class="small material-icons">edit</i></a>
-                        <a href="/personnel/'.$personnel->id.'/download" class="green-text"><i class="small material-icons">cloud_download</i></a>
+                        <a href="/dashboard/personnel/'.$personnel->id.'/profile" class="login_btn btn-small btn waves-effect waves-light"><i class="material-icons left">person</i> View Profile</a>
                     ';
                 })
                 ->rawColumns(['view'])
@@ -59,31 +58,25 @@ class PersonnelController extends Controller
         
         // abort_unless(auth()->user()->isAdmin, 403, 'You are not authorised to view this page!');
         $validation = $request->validate([
-            'service_number' => 'required|numeric',
+            'service_number' => 'required|string',
             'fullname' => 'required|string',
-            'email' => 'required|string',
-            'password' => 'required|string',
-            'dob' => 'required|date',
             'gender' => 'required|string',
+            'dob' => 'required|date',
             'doe' => 'required|date',
             'gl' => 'required|numeric',
             'category' => 'required|string',
-            'directorate' => 'required|string',
-            'isAdmin' => 'required|numeric'
+            'directorate' => 'required|string'
         ]);
 
         $personnel = User::create([
             'service_number' => $request->service_number,
             'fullname' => $request->fullname,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'dob' => $request->dob,
             'gender' => $request->gender,
+            'dob' => $request->dob,
             'doe' => $request->doe,
             'gl' => $request->gl,
             'category' => $request->category,
-            'directorate' => $request->directorate,
-            'isAdmin' => $request->isAdmin
+            'directorate' => $request->directorate
         ]);
 
         if($personnel){
@@ -98,9 +91,9 @@ class PersonnelController extends Controller
      * @param  \App\Personnel  $personnel
      * @return \Illuminate\Http\Response
      */
-    public function show(Personnel $personnel)
+    public function show(User $user)
     {
-        //
+        return $user;
     }
 
     /**

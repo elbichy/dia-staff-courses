@@ -12,7 +12,7 @@
 			</div>
 		</div>
 		<div class="footer z-depth-1">
-			<p>&copy; NSCDC ICT & Cybersecurity Department</p>
+			<p>&copy; Defence Intelligence Agency</p>
 		</div>
 	</div>
 @endsection

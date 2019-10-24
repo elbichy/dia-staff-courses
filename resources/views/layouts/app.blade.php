@@ -49,11 +49,11 @@
                     </a>
                     {{-- BREADCRUMB --}}
                     <div class="left breadcrumbWrap hide-on-small-only">
-                        @if(request()->segment(1) == 'administrator')
+                        {{-- @if(request()->segment(1) == 'administrator')
                             <a href="/administrator" class="breadcrumb">Administrator</a>
                         @else
                             <a href="/dashboard" class="breadcrumb">Dashboard</a>
-                        @endif
+                        @endif --}}
 
                         <a href="#" class="breadcrumb">{{(request()->segment(2) == '') ? 'Dashbord' : ucfirst(request()->segment(2))}}</a>
                         @if(request()->segment(3) != '')
@@ -87,7 +87,7 @@
                     </ul>
                     @auth
                     <ul class="right hide-on-small-only">
-                         <p style="padding-right:12px;">{{ date("H") < 12 ? 'Good morning!' : 'Good afternoon!' }} {{ auth()->user()->fullname }}</p>
+                         <p style="padding-right:12px;">Hi! {{ auth()->user()->fullname }}</p>
                     </ul>
                     @endauth
                 </div>
@@ -119,9 +119,9 @@
                 </li>
 
                 {{-- THE SIDEBAR PROPER --}}
-                <li class="{{(request()->segment(1) == 'dashboard' && request()->segment(2) == NULL) ? 'active' : ''}}">
+                {{-- <li class="{{(request()->segment(1) == 'dashboard' && request()->segment(2) == NULL) ? 'active' : ''}}">
                     <a href="/dashboard"><i class="fas fa-tachometer-alt white-text fa-2x"></i>DASHBOARD</a>
-                </li>
+                </li> --}}
                 {{-- PERSONNEL --}}
                 <li class="no-padding">
                     <ul class="collapsible collapsible-accordion">
@@ -136,9 +136,6 @@
                             </li>
                             <li class="{{(request()->segment(3) == 'all') ? 'active' : ''}}">
                                 <a href="/dashboard/personnel/all">All Personnel</a>
-                            </li>
-                            <li class="{{(request()->segment(3) == 'statistics') ? 'active' : ''}}">
-                                <a href="/dashboard/personnel/statistics">Statistics</a>
                             </li>
                         </ul>
                         </div>
@@ -160,9 +157,6 @@
                             </li>
                             <li class="{{(request()->segment(3) == 'all') ? 'active' : ''}}">
                                 <a href="/dashboard/courses/all">All Courses</a>
-                            </li>
-                            <li class="{{(request()->segment(3) == 'statistics') ? 'active' : ''}}">
-                                <a href="/dashboard/courses/statistics">Statistics</a>
                             </li>
                         </ul>
                         </div>

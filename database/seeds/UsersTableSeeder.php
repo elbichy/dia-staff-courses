@@ -17,8 +17,8 @@ class UsersTableSeeder extends Seeder
         $users = [
             [
                 'fullname' => 'Suleiman Abdulrazaq',
+                'username' => 'elbichy',
                 'service_number' => '66818',
-                'email' => 'elbichy@gmail.com',
                 'password' => Hash::make('@Suleimanu1'),
                 'gender' => 'male',
                 'directorate' => 'Admin',
@@ -26,12 +26,13 @@ class UsersTableSeeder extends Seeder
                 'doe' => Carbon::create(1992,01,27,0),
                 'gl' => '9',
                 'category' => 'Senior',
-                'isAdmin' => 0
+                'isAdmin' => 1,
+                'isCDI' => 0
             ],
             [
                 'fullname' => 'Usman Shehu',
+                'username' => 'ussy',
                 'service_number' => '66819',
-                'email' => 'ussy@gmail.com',
                 'password' => Hash::make('@Suleimanu1'),
                 'gender' => 'male',
                 'directorate' => 'Admin',
@@ -39,7 +40,8 @@ class UsersTableSeeder extends Seeder
                 'doe' => Carbon::create(1992,01,27,0),
                 'gl' => '9',
                 'category' => 'Senior',
-                'isAdmin' => 1
+                'isAdmin' => 0,
+                'isCDI' => 1
             ]
         ];
     

@@ -38,4 +38,21 @@ class User extends Authenticatable
     public function courses(){
         return $this->belongsToMany('App\Course');
     }
+
+    public function getFullnameAttribute($value)
+    {
+        return ucwords($value);
+    } 
+    public function getGenderAttribute($value)
+    {
+        return ucfirst($value);
+    } 
+    public function getCategoryAttribute($value)
+    {
+        return ucfirst($value);
+    } 
+    public function getDirectorateAttribute($value)
+    {
+        return ucwords($value);
+    } 
 }

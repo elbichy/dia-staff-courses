@@ -15,8 +15,8 @@
 					<form action="{{ route('personnel_store_new') }}" method="POST" name="create_form" id="create_form">
 						@csrf
 						<div class="row">
-							<div class="input-field col s12 l2">
-								<input id="service_number" name="service_number" type="number">
+							<div class="input-field col s12 l3">
+								<input id="service_number" name="service_number" type="text">
 								@if ($errors->has('tribe'))
 									<span class="helper-text red-text">
 										<strong>{{ $errors->first('service_number') }}</strong>
@@ -32,24 +32,6 @@
 									</span>
 								@endif
 								<label for="fullname">Fullname</label>
-							</div>
-							<div class="input-field col s12 l3">
-								<input id="email" name="email" type="text">
-								@if ($errors->has('email'))
-									<span class="helper-text red-text">
-										<strong>{{ $errors->first('email') }}</strong>
-									</span>
-								@endif
-								<label for="email">Email</label>
-							</div>
-							<div class="input-field col s12 l2">
-								<input id="password" name="password" type="password">
-								@if ($errors->has('password'))
-									<span class="helper-text red-text">
-										<strong>{{ $errors->first('password') }}</strong>
-									</span>
-								@endif
-								<label for="password">Password</label>
 							</div>
 							<div class="input-field col s12 l2">
 								<input id="dob" name="dob" type="text" class="datepicker" required>
@@ -112,12 +94,13 @@
 									</span>
 								@endif
 							</div>
-							<div class="col s12 l2">
+							<div class="col s12 l3">
 								<label for="category">Category</label>
 								<select id="category" name="category" class="browser-default">
 									<option disabled selected>Select Categoty</option>
 									<option value="junior">Junior</option>
 									<option value="senior">Senior</option>
+									<option value="militry">Military</option>
 								</select>
 								@if ($errors->has('category'))
 									<span class="helper-text red-text">
@@ -125,7 +108,7 @@
 									</span>
 								@endif
 							</div>
-							<div class="input-field col s12 l2">
+							<div class="input-field col s12 l3">
 								<input id="directorate" name="directorate" type="text">
 								@if ($errors->has('directorate'))
 									<span class="helper-text red-text">
@@ -134,22 +117,8 @@
 								@endif
 								<label for="directorate">Directorate</label>
 							</div>
-							<div class="col s12 l2">
-								<label for="isAdmin">User Type</label>
-								<select id="isAdmin" name="isAdmin" class="browser-default">
-									<option disabled selected>Select Type</option>
-									<option value="0">Staff</option>
-									<option value="1">Administrator</option>
-								</select>
-								@if ($errors->has('isAdmin'))
-									<span class="helper-text red-text">
-										<strong>{{ $errors->first('isAdmin') }}</strong>
-									</span>
-								@endif
-							</div>
-							
-							<div class="input-field col s12">
-								<button class="submit btn waves-effect waves-light right" type="submit"><i class="material-icons right">send</i>REGISTER</button>
+							<div class="input-field col s12 l4 right">
+								<button class="submit btn waves-effect waves-light " type="submit"><i class="material-icons right">send</i>REGISTER</button>
 							</div>
 						</div>
 					</form>
@@ -157,7 +126,7 @@
             </div>
         </div>
         <div class="footer z-depth-1">
-            <p>&copy; NSCDC ICT & Cybersecurity Department</p>
+            <p>&copy; Defence Intelligence Agency</p>
         </div>
     </div>
 @endsection

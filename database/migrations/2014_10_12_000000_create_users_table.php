@@ -16,11 +16,9 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('fullname');
-            $table->unsignedBigInteger('service_number')->unique();
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('username')->unique()->nullable();
+            $table->string('service_number')->unique()->nullable();
+            $table->string('password')->nullable();
             $table->string('gender')->nullable();
             $table->string('directorate')->nullable();
             $table->dateTime('dob');
@@ -28,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->integer('gl')->nullable();
             $table->string('category')->nullable();
             $table->boolean('isAdmin')->default(0);
+            $table->boolean('isCDI')->default(0);
             $table->timestamps();
         });
     }
