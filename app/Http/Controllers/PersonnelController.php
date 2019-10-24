@@ -93,7 +93,7 @@ class PersonnelController extends Controller
      */
     public function show(User $user)
     {
-        return $user;
+        return User::where('id', $user->id)->with('courses')->get();
     }
 
     /**
