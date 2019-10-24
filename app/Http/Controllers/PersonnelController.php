@@ -93,7 +93,8 @@ class PersonnelController extends Controller
      */
     public function show(User $user)
     {
-        return User::where('id', $user->id)->with('courses')->get();
+        $user = User::where('id', $user->id)->with('courses')->first();
+        return view('dashboard.staff.profile', compact(['user']));
     }
 
     /**
