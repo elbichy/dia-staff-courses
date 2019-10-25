@@ -1,23 +1,24 @@
-@extends('layouts.app', ['title' => 'All Personnel Records'])
+@extends('layouts.app', ['title' => 'Senior Staff Records'])
 
 @section('content')
     <div class="my-content-wrapper">
         <div class="content-container">
             <div class="sectionWrap">
                 {{-- SALES HEADING --}}
-                <h6 class="center sectionHeading">COURSES RECORDS</h6>
+                <h6 class="center sectionHeading">SENIOR STAFF RECORDS</h6>
 
                 {{-- SALES TABLE --}}
                 <div class="sectionTableWrap z-depth-1">
-                    <table class="table table-bordered" id="users-table">
+                    <table class="table centered table-bordered" id="users-table">
                         <thead>
                             <tr>
                                 <th>SN</th>
-                                <th>Title</th>
-                                <th>Institution</th>
-                                <th>Location</th>
-                                <th>Start_date</th>
-                                <th>End_date</th>
+                                <th>Fullname</th>
+                                <th>Gender</th>
+                                <th>Service No</th>
+                                <th>GL</th>
+                                <th>Categoty</th>
+                                <th>Directorate</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -50,7 +51,7 @@
                 "lengthMenu": [[4, 10, 25, 50, 100, -1], [4, 10, 25, 50, 100, "All"]],
                 processing: true,
                 serverSide: true,
-                ajax:  `{!! route('courses_get_all') !!}`,
+                ajax:  `{!! route('personnel_get_senior') !!}`,
                 columns: [
                     {
                         "data": "id",
@@ -59,11 +60,12 @@
                             return meta.row + meta.settings._iDisplayStart + 1;
                         }, "orderable": false, "searchable": false
                     },
-                    { data: 'title', name: 'title' },
-                    { data: 'institution', name: 'institution'},
-                    { data: 'location', name: 'location'},
-                    { data: 'start_date', name: 'start_date'},
-                    { data: 'end_date', name: 'end_date'},
+                    { data: 'fullname', name: 'fullname' },
+                    { data: 'gender', name: 'view', "orderable": false, "searchable": false},
+                    { data: 'service_number', name: 'service_number'},
+                    { data: 'gl', name: 'gl'},
+                    { data: 'category', name: 'category'},
+                    { data: 'directorate', name: 'directorate'},
                     { data: 'view', name: 'view', "orderable": false, "searchable": false}
                 ]
             });

@@ -21,13 +21,15 @@ class CourseController extends Controller
     public function get_all(){
         $courses = Course::orderBy('created_at', 'DESC')->get();
         return DataTables::of($courses)
-                ->editColumn('created_at', function ($courses) {
+                ->editColumn('start_date', function ($courses) {
+                    return $courses->created_at->toFormattedDateString();
+                })
+                ->editColumn('end_date', function ($courses) {
                     return $courses->created_at->toFormattedDateString();
                 })
                 ->addColumn('view', function($courses) {
                     return '
-                        <a href="/courses/'.$courses->id.'/edit" style="margin-right:10px;" class="blue-text"><i class="small material-icons">edit</i></a>
-                        <a href="/courses/'.$courses->id.'/download" class="green-text"><i class="small material-icons">cloud_download</i></a>
+                        <a href="/dashboard/courses/'.$courses->id.'/delete" style="margin-right:10px;" class="red-text">x</a>
                     ';
                 })
                 ->rawColumns(['view'])
@@ -116,7 +118,9 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
-        //
+        $course->delete();
+        Alert::success('Course record deleted successfully!', 'Success!')->autoclose(2500);
+        return redirect()->back();
     }
 
     public function statistics(){

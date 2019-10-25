@@ -55,7 +55,7 @@
                             <a href="/dashboard" class="breadcrumb">Dashboard</a>
                         @endif --}}
 
-                        <a href="#" class="breadcrumb">{{(request()->segment(2) == '') ? 'Dashbord' : ucfirst(request()->segment(2))}}</a>
+                        <a href="/dashboard/{{ request()->segment(2) }}" class="breadcrumb">{{(request()->segment(2) == '') ? 'Dashbord' : ucfirst(request()->segment(2))}}</a>
                         @if(request()->segment(3) != '')
                             <a href="#" class="breadcrumb">{{ strtoupper(request()->segment(3)) }}</a>
                         @endif
@@ -134,8 +134,17 @@
                             <li class="{{(request()->segment(3) == 'new') ? 'active' : ''}}">
                                 <a href="/dashboard/personnel/new">Register New</a>
                             </li>
+                            <li class="{{(request()->segment(3) == 'military') ? 'active' : ''}}">
+                                <a href="/dashboard/personnel/military">Military Personnel</a>
+                            </li>
+                            <li class="{{(request()->segment(3) == 'senior') ? 'active' : ''}}">
+                                <a href="/dashboard/personnel/senior">Senior Staff</a>
+                            </li>
+                            <li class="{{(request()->segment(3) == 'junior') ? 'active' : ''}}">
+                                <a href="/dashboard/personnel/junior">Junior Staff</a>
+                            </li>
                             <li class="{{(request()->segment(3) == 'all') ? 'active' : ''}}">
-                                <a href="/dashboard/personnel/all">All Personnel</a>
+                                <a href="/dashboard/personnel/all">All Staff</a>
                             </li>
                         </ul>
                         </div>

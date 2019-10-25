@@ -100,7 +100,7 @@
 									<option disabled selected>Select Categoty</option>
 									<option value="junior">Junior</option>
 									<option value="senior">Senior</option>
-									<option value="militry">Military</option>
+									<option value="military">Military</option>
 								</select>
 								@if ($errors->has('category'))
 									<span class="helper-text red-text">

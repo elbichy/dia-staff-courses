@@ -12,16 +12,18 @@ use Yajra\DataTables\Facades\DataTables;
 
 class PersonnelController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+   
+    // ALL PERSONNEL
     public function index()
     {
         return view('dashboard.staff.all');
     }
-
     public function get_all(){
         $personnel = User::orderBy('created_at', 'DESC')->get();
         return DataTables::of($personnel)
@@ -37,22 +39,80 @@ class PersonnelController extends Controller
                 ->make();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
+    // MILITARY PERSONNEL
+    public function military()
+    {
+        return view('dashboard.staff.military');
+    }
+    public function get_all_military(){
+        $personnel = User::where('category', 'military')->orderBy('created_at', 'DESC')->get();
+        return DataTables::of($personnel)
+                ->editColumn('created_at', function ($personnel) {
+                    return $personnel->created_at->toFormattedDateString();
+                })
+                ->addColumn('view', function($personnel) {
+                    return '
+                        <a href="/dashboard/personnel/'.$personnel->id.'/profile" class="login_btn btn-small btn waves-effect waves-light"><i class="material-icons left">person</i> View Profile</a>
+                    ';
+                })
+                ->rawColumns(['view'])
+                ->make();
+    }
+
+   
+    // SENIOR PERSONNEL
+    public function senior()
+    {
+        return view('dashboard.staff.senior');
+    }
+    public function get_all_senior(){
+        $personnel = User::where('category', 'senior')->orderBy('created_at', 'DESC')->get();
+        return DataTables::of($personnel)
+                ->editColumn('created_at', function ($personnel) {
+                    return $personnel->created_at->toFormattedDateString();
+                })
+                ->addColumn('view', function($personnel) {
+                    return '
+                        <a href="/dashboard/personnel/'.$personnel->id.'/profile" class="login_btn btn-small btn waves-effect waves-light"><i class="material-icons left">person</i> View Profile</a>
+                    ';
+                })
+                ->rawColumns(['view'])
+                ->make();
+    }
+
+   
+    // JUNIOR PERSONNEL
+    public function junior()
+    {
+        return view('dashboard.staff.junior');
+    }
+    public function get_all_junior(){
+        $personnel = User::where('category', 'junior')->orderBy('created_at', 'DESC')->get();
+        return DataTables::of($personnel)
+                ->editColumn('created_at', function ($personnel) {
+                    return $personnel->created_at->toFormattedDateString();
+                })
+                ->addColumn('view', function($personnel) {
+                    return '
+                        <a href="/dashboard/personnel/'.$personnel->id.'/profile" class="login_btn btn-small btn waves-effect waves-light"><i class="material-icons left">person</i> View Profile</a>
+                    ';
+                })
+                ->rawColumns(['view'])
+                ->make();
+    }
+
+   
+
+    // CREATE
     public function create()
     {
         return view('dashboard.staff.new');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+   
+
+    // STORE
     public function store(Request $request)
     {
         
@@ -85,53 +145,62 @@ class PersonnelController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Personnel  $personnel
-     * @return \Illuminate\Http\Response
-     */
+   
+    
+    // SHOW PROFILE
     public function show(User $user)
     {
         $user = User::where('id', $user->id)->with('courses')->first();
-        return view('dashboard.staff.profile', compact(['user']));
+        $all_courses = Course::all();
+        return view('dashboard.staff.profile', compact(['user', 'all_courses']));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Personnel  $personnel
-     * @return \Illuminate\Http\Response
-     */
+    
+    
+
     public function edit(Personnel $personnel)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Personnel  $personnel
-     * @return \Illuminate\Http\Response
-     */
+    
+    
+
     public function update(Request $request, Personnel $personnel)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Personnel  $personnel
-     * @return \Illuminate\Http\Response
-     */
+    
+    
+    // ASSIGN NEW COURSE
+    public function assign(Request $request, User $user)
+    {
+        $validation = $request->validate([
+            'course' => 'required|numeric'
+        ]);
+
+        $attached = $user->courses()->attach($request->course);
+        Alert::success('Course assigned successfully!', 'Success!')->autoclose(2500);
+        return redirect()->back();
+    }
+
+  
+    
+    // REMOVE A COURSE
+    public function detach(User $user, Course $course)
+    {
+        $detached = $user->courses()->detach($course->id);
+        Alert::success('Course removed successfully!', 'Success!')->autoclose(2500);
+        return redirect()->back();
+    }
+
+    
+    
+
     public function destroy(Personnel $personnel)
     {
         //
     }
-
-    public function statistics(){
-
-    }
+    
 }
