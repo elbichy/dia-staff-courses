@@ -5,42 +5,56 @@
         <div class="content-container white">
             <div class="sectionWrap z-depth-0">
                 <div class="sectionTableWrap z-depth-0" style="margin-top:18px; padding:0;">
-					<h5 style="padding:8px; width:100%; margin:0 0 20px 0; border-bottom: 2px dotted #ccc; text-align:center; font-weight:bold;">{{ $user->fullname }}'s Profile</h5>
+					<h5 style="padding:8px; width:100%; margin:0 0 20px 0; border-bottom: 2px dotted #ccc; text-align:center; font-weight:bold;">{{ $local_courses->fullname }}'s Profile</h5>
 					
 					{{-- PROFILE INFO --}}
-					<div style="display:flex;">
-						<div class="row center" style="flex:1; height:160px; display:flex; flex-wrap:wrap; justify-content:center; align-items:center;" >
+					<div class="profile">
+						<div class="row center infoWrap">
 							<div class="col s12 l3">
-								<h6>FULLNAME</h6>
-								<p>{{ $user->fullname }}</p>
+								<h6>Service name</h6>
+								<p>{{ $local_courses->servicename }}</p>
 							</div>
 							<div class="col s12 l3">
-								<h6>SERVICE NO.</h6>
-								<p>{{ $user->service_number }}</p>
+								<h6>Service no.</h6>
+								<p>{{ $local_courses->service_number }}</p>
 							</div>
 							<div class="col s12 l3">
-								<h6>GENDER</h6>
-								<p>{{ $user->gender }}</p>
+								<h6>Gender</h6>
+								<p>{{ $local_courses->gender }}</p>
 							</div>
 							<div class="col s12 l3">
-								<h6>DATE OF BIRTH</h6>
-								<p>{{ $user->dob }}</p>
+								<h6>Date of Birth</h6>
+								<p>{{ $local_courses->dob }}</p>
 							</div>
 							<div class="col s12 l3">
-								<h6>DATE OF ENTRY</h6>
-								<p>{{ $user->doe }}</p>
+								<h6>State of Origin</h6>
+								<p>{{ $local_courses->soo }}</p>
 							</div>
 							<div class="col s12 l3">
-								<h6>GRADE LEVEL</h6>
-								<p>{{ $user->gl }}</p>
+								<h6>Local Government</h6>
+								<p>{{ $local_courses->lgoo }}</p>
 							</div>
 							<div class="col s12 l3">
-								<h6>CATEGORY</h6>
-								<p>{{ $user->category }} Staff</p>
+								<h6>Date of Entry</h6>
+								<p>{{ $local_courses->doe }}</p>
 							</div>
 							<div class="col s12 l3">
-								<h6>DIRECTORATE</h6>
-								<p>{{ $user->directorate }}</p>
+								<h6>Grade Level</h6>
+								<p>{{ $local_courses->gl }}</p>
+							</div>
+
+							<div class="col s12 l3">
+								<h6>Category</h6>
+								<p>{{ $local_courses->category }} Staff</p>
+							</div>
+							<div class="col s12 l3">
+								<h6>Directorate</h6>
+								<p>{{ $local_courses->directorate }}</p>
+							</div>
+
+							<div class="col s12 l6 right douButtons">
+								<a href="{{ route('personnel_edit', $local_courses->id) }}"><i class="fas fa-edit"></i> Edit profile</a>
+								<a href="{{ route('personnel_delete', $local_courses->id) }}"><i class="fas fa-trash-alt"></i> Delete staff</a>
 							</div>
 						</div>
 						<div class="profil_pic" style="width:150px; height:160px; border:1px solid #ccc;">
@@ -48,9 +62,9 @@
 						</div>
 					</div>
 
-					{{-- COURSES --}}
+					{{-- LOCAL COURSES --}}
 					<fieldset style="border:2px solid #ccc; padding: 15px 10px 10px 10px;">
-						<legend style="border:0px solid #ccc; padding:4px 10px; font-weight:bold;">COURSES ATTENDED</legend>
+						<legend style="border:0px solid #ccc; padding:4px 10px; font-weight:bold;">FOREIGN COURSES ATTENDED</legend>
 						<table class="centered striped">
 							<thead>
 								<tr>
@@ -63,33 +77,71 @@
 								</tr>
 							</thead>
 							<tbody>
-								@foreach($user->courses as $courses)
-									<tr>
-										<td>{{ $courses->title }}</td>
-										<td>{{ $courses->institution }}</td>
-										<td>{{ $courses->location }}</td>
-										<td>{{ $courses->start_date }}</td>
-										<td>{{ $courses->end_date }}</td>
-										<td>
-											<a href="{{ route('personnel_detach_course', ['user'=>$user->id, 'course'=>$courses->id]) }}">x</a>
-										</td>
-									</tr>
-								@endforeach
-								@empty($user->courses)
+								@if(! $foreign_courses->courses->isEmpty())
+									@foreach($foreign_courses->courses as $f_courses)
+										<tr>
+											<td>{{ $f_courses->title }}</td>
+											<td>{{ $f_courses->institution }}</td>
+											<td>{{ $f_courses->location }}</td>
+											<td>{{ $f_courses->startdate }}</td>
+											<td>{{ $f_courses->enddate }}</td>
+											<td>
+												<a href="{{ route('personnel_detach_course', ['user'=>$local_courses->id, 'course'=>$f_courses->id]) }}">x</a>
+											</td>
+										</tr>
+									@endforeach
+								@else
 									<tr>
 										<td colspan="5" style="text-align:center;">No Courses Attended</td>
 									</tr>
-								@endempty
+								@endif
+							</tbody>
+						</table>
+					</fieldset>
+
+					{{-- FOREIGN COURSES --}}
+					<fieldset style="border:2px solid #ccc; padding: 15px 10px 10px 10px;">
+						<legend style="border:0px solid #ccc; padding:4px 10px; font-weight:bold;">LOCAL COURSES ATTENDED</legend>
+						<table class="centered striped">
+							<thead>
+								<tr>
+									<th>Title</th>
+									<th>Institution</th>
+									<th>Location</th>
+									<th>Start Date</th>
+									<th>End Date</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								@if(! $local_courses->courses->isEmpty())
+									@foreach($local_courses->courses as $l_courses)
+										<tr>
+											<td>{{ $l_courses->title }}</td>
+											<td>{{ $l_courses->institution }}</td>
+											<td>{{ $l_courses->location }}</td>
+											<td>{{ $l_courses->startdate }}</td>
+											<td>{{ $l_courses->enddate }}</td>
+											<td>
+												<a href="{{ route('personnel_detach_course', ['user'=>$local_courses->id, 'course'=>$l_courses->id]) }}">x</a>
+											</td>
+										</tr>
+									@endforeach
+								@else
+									<tr>
+										<td colspan="5" style="text-align:center;">No Courses Attended</td>
+									</tr>
+								@endif
 							</tbody>
 						</table>
 					</fieldset>
 
 					{{-- ASSIGN NEW COURSE --}}
-					<h6 class="center">ASSIGN A NEW COURSE</h6>
-					<form class="row" action="{{ route('personnel_assign_course', $user->id) }}" method="POST" style="padding:12px; display:flex; align-items:center;">
+					<form class="assignCourse row card" action="{{ route('personnel_assign_course', $local_courses->id) }}" method="POST">
 						@method('PUT')
 						@csrf
-						<div class="col s12 l10">
+						<h6 class="center white-text">ASSIGN A NEW COURSE</h6>
+						<div class="col s12 l10 select">
 							<select id="course" name="course" class="browser-default" required>
 								<option disabled selected>Select a new course for this personnel</option>
 								@foreach($all_courses as $each_course)

@@ -723,7 +723,51 @@ table {
 								}
 							}
 						}
-					}
+                    }
+                    .profile{
+                        display:flex;
+                        .infoWrap{
+                            flex:1;
+                            color:#444;
+                            h6{
+                                font-weight: bold;
+                            }
+                            .douButtons{
+                                // border: 1px solid red;
+                                height: 60px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: flex-end;
+                                a{
+                                    margin-right: 20px;
+                                }
+                            }
+                        }
+                    }
+                    .assignCourse{
+                        padding:12px 12px 20px 12px; 
+                        display:flex; 
+                        flex-wrap:wrap; 
+                        align-items:center; 
+                        position: sticky; 
+                        bottom: 2px; 
+                        background: #fff; 
+                        background: linear-gradient(90deg, var(--primary-bg-dark) 0%, var(--primary-bg-light) 100%);
+                        h6{
+                            // font-weight: bold;
+                            color: #fff;
+                            width: 100%;
+                            margin-bottom: 12px;
+                            margin-top: 3px;
+                        }
+                        .select{
+                            padding-left: 0!important;
+                            margin-left: 3px;
+                        }
+                        button{
+                            background: #174d67;
+                        }
+                    }
 				}
 			}
 		}

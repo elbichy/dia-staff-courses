@@ -50,7 +50,7 @@ class User extends Authenticatable
     public function getCategoryAttribute($value)
     {
         return ucfirst($value);
-    } 
+    }
     public function getDirectorateAttribute($value)
     {
         return ucwords($value);

@@ -20,8 +20,10 @@ class CreateCoursesTable extends Migration
             $table->string('title')->nullable();
             $table->string('institution')->nullable();
             $table->string('location')->nullable();
-            $table->timestamp('start_date')->default(Carbon::now());
-            $table->timestamp('end_date')->default(Carbon::now());
+            $table->string('type')->nullable();
+            $table->string('course')->nullable();
+            $table->date('startdate')->nullable();
+            $table->date('enddate')->nullable();
             $table->timestamps();
         });
     }

@@ -21,12 +21,6 @@ class CourseController extends Controller
     public function get_all(){
         $courses = Course::orderBy('created_at', 'DESC')->get();
         return DataTables::of($courses)
-                ->editColumn('start_date', function ($courses) {
-                    return $courses->created_at->toFormattedDateString();
-                })
-                ->editColumn('end_date', function ($courses) {
-                    return $courses->created_at->toFormattedDateString();
-                })
                 ->addColumn('view', function($courses) {
                     return '
                         <a href="/dashboard/courses/'.$courses->id.'/delete" style="margin-right:10px;" class="red-text">x</a>
@@ -59,15 +53,19 @@ class CourseController extends Controller
             'title' => 'required|string',
             'institution' => 'required|string',
             'location' => 'required|string',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date'
+            'type' => 'required|string',
+            'course' => 'required|string',
+            'startdate' => 'required|date',
+            'enddate' => 'required|date'
         ]);
         $courses = Course::create([
             'title' => $request->title,
             'institution' => $request->institution,
             'location' => $request->location,
-            'start_date' => $request->start_date,
-            'end_date' => $request->end_date
+            'type' => $request->type,
+            'course' => $request->course,
+            'startdate' => $request->startdate,
+            'enddate' => $request->enddate
         ]);
 
         if($courses){

@@ -743,6 +743,58 @@ table tbody tr td .recieptBtn {
   background: transparent;
 }
 
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .profile {
+  display: flex;
+}
+
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .profile .infoWrap {
+  flex: 1;
+  color: #444;
+}
+
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .profile .infoWrap h6 {
+  font-weight: bold;
+}
+
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .profile .infoWrap .douButtons {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .profile .infoWrap .douButtons a {
+  margin-right: 20px;
+}
+
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .assignCourse {
+  padding: 12px 12px 20px 12px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 2px;
+  background: #fff;
+  background: linear-gradient(90deg, var(--primary-bg-dark) 0%, var(--primary-bg-light) 100%);
+}
+
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .assignCourse h6 {
+  color: #fff;
+  width: 100%;
+  margin-bottom: 12px;
+  margin-top: 3px;
+}
+
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .assignCourse .select {
+  padding-left: 0 !important;
+  margin-left: 3px;
+}
+
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .assignCourse button {
+  background: #174d67;
+}
+
 .app .my-content-wrapper .footer {
   width: 100%;
   height: 50px;

@@ -40,6 +40,27 @@ class PersonnelController extends Controller
     }
 
    
+    // CONTRACT PERSONNEL
+    public function contract()
+    {
+        return view('dashboard.staff.contract');
+    }
+    public function get_all_contract(){
+        $personnel = User::where('category', 'contract')->orderBy('created_at', 'DESC')->get();
+        return DataTables::of($personnel)
+                ->editColumn('created_at', function ($personnel) {
+                    return $personnel->created_at->toFormattedDateString();
+                })
+                ->addColumn('view', function($personnel) {
+                    return '
+                        <a href="/dashboard/personnel/'.$personnel->id.'/profile" class="login_btn btn-small btn waves-effect waves-light"><i class="material-icons left">person</i> View Profile</a>
+                    ';
+                })
+                ->rawColumns(['view'])
+                ->make();
+    }
+
+   
     // MILITARY PERSONNEL
     public function military()
     {
@@ -119,10 +140,13 @@ class PersonnelController extends Controller
         // abort_unless(auth()->user()->isAdmin, 403, 'You are not authorised to view this page!');
         $validation = $request->validate([
             'service_number' => 'required|string',
+            'servicename' => 'required|string',
             'fullname' => 'required|string',
             'gender' => 'required|string',
             'dob' => 'required|date',
             'doe' => 'required|date',
+            'soo' => 'required|string',
+            'lgoo' => 'required|string',
             'gl' => 'required|numeric',
             'category' => 'required|string',
             'directorate' => 'required|string'
@@ -130,10 +154,13 @@ class PersonnelController extends Controller
 
         $personnel = User::create([
             'service_number' => $request->service_number,
+            'servicename' => $request->servicename,
             'fullname' => $request->fullname,
             'gender' => $request->gender,
             'dob' => $request->dob,
             'doe' => $request->doe,
+            'soo' => $request->soo,
+            'lgoo' => $request->lgoo,
             'gl' => $request->gl,
             'category' => $request->category,
             'directorate' => $request->directorate
@@ -150,25 +177,38 @@ class PersonnelController extends Controller
     // SHOW PROFILE
     public function show(User $user)
     {
-        $user = User::where('id', $user->id)->with('courses')->first();
+        $foreign_courses = User::where('id', $user->id)->with(['courses' => function ($query) {
+            $query->where('type', 'foreign');
+        }])->first();
+
+        $local_courses = User::where('id', $user->id)->with(['courses' => function ($query) {
+            $query->where('type', 'local');
+        }])->first();
+
         $all_courses = Course::all();
-        return view('dashboard.staff.profile', compact(['user', 'all_courses']));
+
+        return view('dashboard.staff.profile', compact(['all_courses', 'foreign_courses', 'local_courses']));
     }
 
     
     
 
-    public function edit(Personnel $personnel)
+    public function edit(User $user)
     {
-        //
+        // return $user;
+        return view('dashboard.staff.edit', compact('user'));
     }
 
     
     
 
-    public function update(Request $request, Personnel $personnel)
+    public function update(Request $request, User $user)
     {
-        //
+        $update = response()->json($user->update($request->all()));
+        if($update){
+            Alert::success('Profile updated successfully!', 'Success!')->autoclose(2500);
+            return redirect()->route('personnel_profile', $user->id);
+        }
     }
 
     
@@ -198,9 +238,11 @@ class PersonnelController extends Controller
     
     
 
-    public function destroy(Personnel $personnel)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+        Alert::success('Staff record deleted successfully!', 'Success!')->autoclose(2500);
+        return redirect()->route('personnel_all');
     }
     
 }

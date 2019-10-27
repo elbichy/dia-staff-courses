@@ -18,6 +18,7 @@
 // Auth::routes();
 
 Route::get('/', 'LandingController@index')->name('landing');
+Route::get('/login', 'LandingController@index')->name('login_page');
 Route::post('/login', 'Auth\LoginController@login')->name('login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
@@ -28,6 +29,9 @@ Route::group(['prefix' => 'dashboard'], function () {
 	// ALL PERSONNEL ROUTES
 	Route::group(['prefix' => 'personnel'], function () {
 		Route::get('/', 'PersonnelController@index');
+
+		Route::get('/contract', 'PersonnelController@contract')->name('personnel_contract');
+		Route::get('/get_all_contract', 'PersonnelController@get_all_contract')->name('personnel_get_contract');
 
 		Route::get('/military', 'PersonnelController@military')->name('personnel_military');
 		Route::get('/get_all_military', 'PersonnelController@get_all_military')->name('personnel_get_military');
@@ -44,6 +48,10 @@ Route::group(['prefix' => 'dashboard'], function () {
 		Route::get('/{user}/profile', 'PersonnelController@show')->name('personnel_profile');
 		Route::get('/new', 'PersonnelController@create')->name('personnel_new');
 		Route::post('/new/store', 'PersonnelController@store')->name('personnel_store_new');
+		Route::get('/{user}/edit', 'PersonnelController@edit')->name('personnel_edit');
+		Route::put('/{user}/update', 'PersonnelController@update')->name('personnel_update');
+		Route::get('/{user}/delete', 'PersonnelController@destroy')->name('personnel_delete');
+
 		Route::put('/assign/{user}/course', 'PersonnelController@assign')->name('personnel_assign_course');
 		Route::get('/detach/{user}/{course}', 'PersonnelController@detach')->name('personnel_detach_course');
 	});

@@ -15,14 +15,17 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('fullname');
-            $table->string('username')->unique()->nullable();
-            $table->string('service_number')->unique()->nullable();
+            $table->string('servicename')->nullable();
+            $table->string('fullname')->nullable();
+            $table->string('username')->nullable();
+            $table->string('service_number')->nullable();
             $table->string('password')->nullable();
             $table->string('gender')->nullable();
             $table->string('directorate')->nullable();
             $table->dateTime('dob');
             $table->dateTime('doe');
+            $table->string('soo')->nullable();
+            $table->string('lgoo')->nullable();
             $table->integer('gl')->nullable();
             $table->string('category')->nullable();
             $table->boolean('isAdmin')->default(0);
