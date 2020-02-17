@@ -22,6 +22,18 @@
                                 <th></th>
                             </tr>
                         </thead>
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th>Fullname</th>
+                                <th>Gender</th>
+                                <th>Service No</th>
+                                <th>GL</th>
+                                <th>Categoty</th>
+                                <th>Directorate</th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -61,13 +73,24 @@
                         }, "orderable": false, "searchable": false
                     },
                     { data: 'fullname', name: 'fullname' },
-                    { data: 'gender', name: 'view', "orderable": false, "searchable": false},
+                    { data: 'gender', name: 'gender'},
                     { data: 'service_number', name: 'service_number'},
                     { data: 'gl', name: 'gl'},
                     { data: 'category', name: 'category'},
                     { data: 'directorate', name: 'directorate'},
                     { data: 'view', name: 'view', "orderable": false, "searchable": false}
-                ]
+                ],
+                initComplete: function () {
+                    this.api().columns().every(function () {
+                        var column = this;
+                        var input = document.createElement("input");
+                        $(input).attr('placeholder', 'Search');
+                        $(input).appendTo($(column.footer()).empty())
+                        .on('keyup', function () {
+                            column.search($(this).val(), false, false, true).draw();
+                        });
+                    });
+                },
             });
             $('.dataTables_length > label > select').addClass('browser-default');
         });

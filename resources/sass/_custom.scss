@@ -668,10 +668,10 @@ table {
 												display: none!important;
 											}
 										}
-										&:nth-child(2) {
+										&:nth-child(8) {
 											input {
-												display: none!important;
-											}
+                                                display: none!important;
+                                            }
 										}
 										// &:nth-child(6) {
 										//     input {
@@ -1376,11 +1376,16 @@ table {
                                                 display: none!important;
                                             }
                                         }
-                                        &:nth-child(2) {
-                                            input {
+                                        &:nth-child(8) {
+											input {
                                                 display: none!important;
                                             }
-                                        }
+										}
+                                        // &:nth-child(2) {
+                                        //     input {
+                                        //         display: none!important;
+                                        //     }
+                                        // }
                                         // &:nth-child(6) {
                                         //     input {
                                         //         display: none!important;
