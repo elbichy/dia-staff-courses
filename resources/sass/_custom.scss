@@ -816,8 +816,15 @@ table {
                             padding-left: 0!important;
                             margin-left: 3px;
                         }
-                        button{
+                        .button{
                             background: #174d67;
+                        }
+                        input{
+                            color: #fff;
+                            border-color: #fff;
+                        }
+                        label{
+                            color: #fff;
                         }
                     }
 				}

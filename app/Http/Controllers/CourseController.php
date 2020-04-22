@@ -15,7 +15,12 @@ class CourseController extends Controller
      */
     public function index()
     {
-        return view('dashboard.course.all');
+        if(auth()->user()->isTraining || auth()->user()->isCDI){
+            return view('dashboard.course.all');
+        }else{
+            return redirect()->back();
+        }
+        
     }
 
     public function get_all(){
@@ -37,7 +42,11 @@ class CourseController extends Controller
      */
     public function create()
     {
-        return view('dashboard.course.new');
+        if(auth()->user()->isTraining || auth()->user()->isCDI){
+            return view('dashboard.course.new');
+        }else{
+            return redirect()->back();
+        }
     }
 
     /**

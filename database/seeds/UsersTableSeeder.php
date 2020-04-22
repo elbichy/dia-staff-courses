@@ -30,6 +30,7 @@ class UsersTableSeeder extends Seeder
                 'gl' => '9',
                 'category' => 'Senior',
                 'isAdmin' => 1,
+                'isTraining' => 0,
                 'isCDI' => 0
             ],
             [
@@ -47,6 +48,25 @@ class UsersTableSeeder extends Seeder
                 'gl' => '9',
                 'category' => 'Senior',
                 'isAdmin' => 0,
+                'isTraining' => 1,
+                'isCDI' => 0
+            ],
+            [
+                'fullname' => 'Usman Tahir Aboki',
+                'servicename' => 'U. T. Aboki',
+                'username' => 'aboki',
+                'service_number' => '66519',
+                'password' => Hash::make('@Suleimanu1'),
+                'gender' => 'male',
+                'directorate' => 'Admin',
+                'soo' => 'Nasarawa',
+                'lgoo' => 'Kiana',
+                'dob' => Carbon::create(1992,01,27,0),
+                'doe' => Carbon::create(1992,01,27,0),
+                'gl' => '9',
+                'category' => 'Senior',
+                'isAdmin' => 0,
+                'isTraining' => 0,
                 'isCDI' => 1
             ]
         ];

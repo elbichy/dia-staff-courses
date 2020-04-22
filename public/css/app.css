@@ -846,8 +846,17 @@ table tbody tr td .recieptBtn {
   margin-left: 3px;
 }
 
-.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .assignCourse button {
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .assignCourse .button {
   background: #174d67;
+}
+
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .assignCourse input {
+  color: #fff;
+  border-color: #fff;
+}
+
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .assignCourse label {
+  color: #fff;
 }
 
 .app .my-content-wrapper .footer {
