@@ -8,6 +8,10 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Alert;
+use App\Document;
+use App\Posting;
+use App\Progression;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
 class PersonnelController extends Controller
@@ -32,7 +36,7 @@ class PersonnelController extends Controller
                 })
                 ->addColumn('view', function($personnel) {
                     return '
-                        <a href="/dashboard/personnel/'.$personnel->id.'/profile" class="login_btn btn-small btn waves-effect waves-light"><i class="material-icons left">person</i> View Profile</a>
+                        <a href="/dashboard/personnel/'.$personnel->id.'/profile" class="login_btn btn-small btn waves-effect waves-light">Browse</a>
                     ';
                 })
                 ->rawColumns(['view'])
@@ -124,6 +128,32 @@ class PersonnelController extends Controller
     }
 
    
+    // ARCHIVED PERSONNEL
+    public function archive()
+    {
+        return view('dashboard.staff.archive');
+    }
+    public function get_all_archive(){
+        $personnel = User::where(function ($query) {
+            $query->where('category', 'transfered')
+                  ->orWhere('category', 'retired')
+                  ->orWhere('category', 'dismissed')
+                  ->orWhere('category', 'resined');
+        })->orderBy('created_at', 'DESC')->get();
+        return DataTables::of($personnel)
+                ->editColumn('created_at', function ($personnel) {
+                    return $personnel->created_at->toFormattedDateString();
+                })
+                ->addColumn('view', function($personnel) {
+                    return '
+                        <a href="/dashboard/personnel/'.$personnel->id.'/profile" class="login_btn btn-small btn waves-effect waves-light"><i class="material-icons left">person</i> View Profile</a>
+                    ';
+                })
+                ->rawColumns(['view'])
+                ->make();
+    }
+
+
 
     // CREATE
     public function create()
@@ -172,11 +202,12 @@ class PersonnelController extends Controller
         }
     }
 
-   
     
     // SHOW PROFILE
     public function show(User $user)
     {
+        
+        $personnel = User::where('service_number', $user->service_number)->with('documents', 'postings', 'progressions')->first();
         $foreign_courses = User::where('id', $user->id)->with(['courses' => function ($query) {
             $query->where('type', 'foreign');
         }])->first();
@@ -187,11 +218,10 @@ class PersonnelController extends Controller
 
         $all_courses = Course::all();
 
-        return view('dashboard.staff.profile', compact(['all_courses', 'foreign_courses', 'local_courses']));
+        return view('dashboard.staff.profile', compact(['all_courses', 'foreign_courses', 'local_courses', 'personnel']));
     }
 
-    
-    
+      
 
     public function edit(User $user)
     {
@@ -201,7 +231,6 @@ class PersonnelController extends Controller
 
     
     
-
     public function update(Request $request, User $user)
     {
         $update = response()->json($user->update($request->all()));
@@ -211,6 +240,28 @@ class PersonnelController extends Controller
         }
     }
 
+    
+    
+    // UPLOAD NEW DOCUMENT
+    public function upload_document(Request $request, User $user)
+    {
+       
+        if($request->has('file')){
+            $images = $request->file('file');
+            foreach($images as $image)
+            {
+                $file_name = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+                $image->storeAs('public/documents/'.$user->service_number.'/', $image->getClientOriginalName());
+
+                $upload = User::find($user->id)->documents()->create([
+                    'title' => $file_name,
+                    'file' => $image->getClientOriginalName()
+                ]);
+            }
+        }
+        Alert::success('Document uploaded successfully!', 'Success!')->autoclose(2500);
+        return redirect()->back();
+    }
     
     
     // ASSIGN NEW COURSE
@@ -235,14 +286,80 @@ class PersonnelController extends Controller
         return redirect()->back();
     }
 
+
+    // ADD NEW PROGRESSION
+    public function add_progression(Request $request, User $user)
+    {
+        $validation = $request->validate([
+            'gl' => 'required|numeric',
+            'gl_start' => 'required|date',
+            'gl_end' => 'required|date'
+        ]);
+        $record = User::find($user->id)->progressions()->create([
+            'gl' => $request->gl,
+            'gl_start' => $request->gl_start,
+            'gl_end' => $request->gl_end,
+        ]);
+
+        if($record){
+            Alert::success('Progression record added successfully!', 'Success!')->autoclose(2500);
+            return redirect()->back();
+        }
+    }
+    // REMOVE A PROGRESSION
+    public function remove_progression(User $user, Progression $progression)
+    {
+        $progression->delete();
+        Alert::success('Progression removed successfully!', 'Success!')->autoclose(2500);
+        return redirect()->back();
+    }
+
     
-    
+    // ADD NEW POSTING
+    public function add_posting(Request $request, User $user)
+    {
+        $validation = $request->validate([
+            'directorate' => 'required|string',
+            'directorate_start' => 'required|date',
+            'directorate_end' => 'required|date'
+        ]);
+        $record = User::find($user->id)->postings()->create([
+            'directorate' => $request->directorate,
+            'directorate_start' => $request->directorate_start,
+            'directorate_end' => $request->directorate_end,
+        ]);
+
+        if($record){
+            Alert::success('Posting record added successfully!', 'Success!')->autoclose(2500);
+            return redirect()->back();
+        }
+    }
+    // REMOVE A POSTING
+    public function remove_posting(User $user, Posting $posting)
+    {
+        $posting->delete();
+        Alert::success('Posting removed successfully!', 'Success!')->autoclose(2500);
+        return redirect()->back();
+    }
+
+
 
     public function destroy(User $user)
     {
         $user->delete();
         Alert::success('Staff record deleted successfully!', 'Success!')->autoclose(2500);
         return redirect()->route('personnel_all');
+    }
+
+    
+    // DELETE PERSONNEL DOCUMENT
+    public function destroyDocument($id)
+    {
+        $document = Document::where('id', $id)->with('user')->first();
+        Storage::delete(['public/documents/'.$document->user->service_number.'/'.$document->file]);
+        $document->delete();
+        Alert::success('Document deleted successfully!', 'Success!')->autoclose(2500);
+        return redirect()->back();
     }
     
 }

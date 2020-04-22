@@ -45,15 +45,29 @@ Route::group(['prefix' => 'dashboard'], function () {
 		Route::get('/all', 'PersonnelController@index')->name('personnel_all');
 		Route::get('/get_all', 'PersonnelController@get_all')->name('personnel_get_all');
 
+		Route::get('/archived', 'PersonnelController@archive')->name('personnel_archive');
+		Route::get('/get_all_archive', 'PersonnelController@get_all_archive')->name('personnel_get_archive');
+
 		Route::get('/{user}/profile', 'PersonnelController@show')->name('personnel_profile');
 		Route::get('/new', 'PersonnelController@create')->name('personnel_new');
 		Route::post('/new/store', 'PersonnelController@store')->name('personnel_store_new');
 		Route::get('/{user}/edit', 'PersonnelController@edit')->name('personnel_edit');
 		Route::put('/{user}/update', 'PersonnelController@update')->name('personnel_update');
 		Route::get('/{user}/delete', 'PersonnelController@destroy')->name('personnel_delete');
+		Route::post('/{user}/document/upload', 'PersonnelController@upload_document')->name('personnel_doc_upload');
 
 		Route::put('/assign/{user}/course', 'PersonnelController@assign')->name('personnel_assign_course');
 		Route::get('/detach/{user}/{course}', 'PersonnelController@detach')->name('personnel_detach_course');
+		
+		Route::put('/progression/{user}/add', 'PersonnelController@add_progression')->name('personnel_add_progression');
+		Route::get('/progression/{user}/remove/{progression}', 'PersonnelController@remove_progression')->name('personnel_remove_progression');
+		
+		Route::put('/posting/{user}/add', 'PersonnelController@add_posting')->name('personnel_add_posting');
+		Route::get('/posting/{user}/remove/{posting}', 'PersonnelController@remove_posting')->name('personnel_remove_posting');
+	});
+
+	Route::group(['prefix' => 'file'], function () {
+		Route::delete('/document/{document}/delete', 'PersonnelController@destroyDocument')->name('deletePersonnelDocument');
 	});
 
 	// ALL CORSES ROUTES

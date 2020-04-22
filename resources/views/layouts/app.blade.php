@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="{{asset('css/material-icons.css')}}">
     <link rel="stylesheet" href="{{ asset('css/datatable/jquery.dataTables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/datatable/buttons.dataTables.min.css') }}">
+    <link rel="stylesheet"  href="{{asset('css/lightbox.css')}}"/>
     <link rel="stylesheet" href="{{asset('css/wnoty.css')}}">
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
@@ -149,6 +150,9 @@
                             <li class="{{(request()->segment(3) == 'all') ? 'active' : ''}}">
                                 <a href="/dashboard/personnel/all">All Staff</a>
                             </li>
+                            <li class="{{(request()->segment(3) == 'archived') ? 'active' : ''}}">
+                                <a href="/dashboard/personnel/archived">Archived Staff</a>
+                            </li>
                         </ul>
                         </div>
                     </li>
@@ -205,6 +209,7 @@
     <script type="text/javascript" src="{{asset('js/axios.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/wnoty.js')}}"></script>
     {!! MaterializeCSS::include_js() !!}
+    <script src="{{ asset('js/lightbox.js') }}"></script>
     <script type="text/javascript" src="{{asset('js/custom.js')}}"></script>
     @stack('scripts')
     <script type="text/javascript" src="{{ asset('js/sweetalert.min.js') }}"></script>

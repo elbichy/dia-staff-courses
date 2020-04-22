@@ -62,6 +62,210 @@
 						</div>
 					</div>
 
+					{{-- PERSONNEL CAREER PROGRESSION --}}
+					<fieldset style="border:2px solid #ccc; padding: 15px 10px 10px 10px;">
+						<legend style="border:0px solid #ccc; padding:4px 10px; font-weight:bold;">CAREER PROGRESSION</legend>
+						<table class="centered striped">
+							<thead>
+								<tr>
+									<th>Grade level</th>
+									<th>From</th>
+									<th>To</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								@if(!$personnel->progressions->isEmpty())
+									@foreach($personnel->progressions as $progressions)
+										<tr>
+											<td>{{ $progressions->gl }}</td>
+											<td>{{ $progressions->gl_start }}</td>
+											<td>{{ $progressions->gl_end }}</td>
+											<td>
+												<a href="{{ route('personnel_remove_progression', ['user'=>$personnel->id, 'progression'=>$progressions->id]) }}">x</a>
+											</td>
+										</tr>
+									@endforeach
+								@else
+									<tr>
+										<td colspan="5" style="text-align:center;">No records available</td>
+									</tr>
+								@endif
+							</tbody>
+						</table>
+					</fieldset>
+					{{-- ADD NEW RECORD --}}
+					<form class="assignCourse row card" action="{{ route('personnel_add_progression', $local_courses->id) }}" method="POST">
+						@method('PUT')
+						@csrf
+						<h6 class="center white-text">ADD A NEW PROGRESSION RECORD</h6>
+						<div class="input-field col s12 l3 select">
+							<select id="gl" name="gl" class="browser-default" required>
+								<option disabled selected>Select a Grade Level</option>
+								<option value="17">17</option>
+								<option value="16">16</option>
+								<option value="15">15</option>
+								<option value="14">14</option>
+								<option value="13">13</option>
+								<option value="12">12</option>
+								<option value="11">11</option>
+								<option value="10">10</option>
+								<option value="9">9</option>
+								<option value="8">8</option>
+								<option value="7">7</option>
+								<option value="6">6</option>
+								<option value="5">5</option>
+								<option value="4">4</option>
+								<option value="3">3</option>
+							</select>
+							@if ($errors->has('gl'))
+								<span class="helper-text red-text">
+									<strong>{{ $errors->first('gl') }}</strong>
+								</span>
+							@endif
+						</div>
+						<div class="input-field col s12 l3 select">
+							<input type="text" name="gl_start" class="datepicker">
+							<label for="gl_start">From (Start-date)</label>
+							@if ($errors->has('gl_start'))
+								<span class="helper-text red-text">
+									<strong>{{ $errors->first('gl_start') }}</strong>
+								</span>
+							@endif
+						</div>
+						<div class="input-field col s12 l3 select">
+							<input type="text" name="gl_end" class="datepicker">
+							<label for="gl_end">To (End-date)</label>
+							@if ($errors->has('gl_end'))
+								<span class="helper-text red-text">
+									<strong>{{ $errors->first('gl_end') }}</strong>
+								</span>
+							@endif
+						</div>
+						<button class="submit btn waves-effect waves-light" type="submit"><i class="material-icons right">add</i>ADD RECORD</button>
+					</form>
+
+					{{-- PERSONNEL REDEPLOYMENTS/POSTING --}}
+					<fieldset style="border:2px solid #ccc; padding: 15px 10px 10px 10px;">
+						<legend style="border:0px solid #ccc; padding:4px 10px; font-weight:bold;">REDEPLOYMENT/POSTING</legend>
+						<table class="centered striped">
+							<thead>
+								<tr>
+									<th>Directorate</th>
+									<th>From</th>
+									<th>To</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								@if(!$personnel->postings->isEmpty())
+									@foreach($personnel->postings as $postings)
+										<tr>
+											<td>{{ $postings->directorate }}</td>
+											<td>{{ $postings->directorate_start }}</td>
+											<td>{{ $postings->directorate_end }}</td>
+											<td>
+												<a href="{{ route('personnel_remove_posting', ['user'=>$personnel->id, 'posting'=>$postings->id]) }}">x</a>
+											</td>
+										</tr>
+									@endforeach
+								@else
+									<tr>
+										<td colspan="5" style="text-align:center;">No record available</td>
+									</tr>
+								@endif
+							</tbody>
+						</table>
+					</fieldset>
+					{{-- ADD NEW RECORD --}}
+					<form class="assignCourse row card" action="{{ route('personnel_add_posting', $local_courses->id) }}" method="POST">
+						@method('PUT')
+						@csrf
+						<h6 class="center white-text">ADD A NEW POSTING RECORD</h6>
+						<div class="input-field col s12 l3 select">
+							<select id="directorate" name="directorate" class="browser-default" required>
+								<option disabled selected>Select a Directorate</option>
+								<option value="Administration">Administration</option>
+								<option value="Technical">Technical services</option>
+								<option value="Operations">Operations</option>
+							</select>
+							@if ($errors->has('directorate'))
+								<span class="helper-text red-text">
+									<strong>{{ $errors->first('directorate') }}</strong>
+								</span>
+							@endif
+						</div>
+						<div class="input-field col s12 l3 select">
+							<input type="text" name="directorate_start" class="datepicker">
+							<label for="directorate_start">From (Start-date)</label>
+							@if ($errors->has('directorate_start'))
+								<span class="helper-text red-text">
+									<strong>{{ $errors->first('directorate_start') }}</strong>
+								</span>
+							@endif
+						</div>
+						<div class="input-field col s12 l3 select">
+							<input type="text" name="directorate_end" class="datepicker">
+							<label for="directorate_end">To (End-date)</label>
+							@if ($errors->has('directorate_end'))
+								<span class="helper-text red-text">
+									<strong>{{ $errors->first('directorate_end') }}</strong>
+								</span>
+							@endif
+						</div>
+						<button class="submit btn waves-effect waves-light" type="submit"><i class="material-icons right">add</i>ADD RECORD</button>
+					</form>
+					
+					{{-- PERSONNEL DOCUMENTS --}}
+					<fieldset>
+						<legend>PERSONNEL CREDENTIALS</legend>
+						<div class="docWrapper">
+							@if(!$personnel->documents->isEmpty())
+								@foreach($personnel->documents as $document)
+									<ul>
+										<a href="#" class="deleteDocument" id="delete"><i class="tiny material-icons">close</i></a>
+										{{-- DELETE DOCUMENT FORM --}}
+										<form action="{{ route('deletePersonnelDocument', $document->id) }}" method="post" id="deletePersonnelDocument">
+											@method('delete')
+											@csrf
+										</form>
+
+										<li>
+											<a href="{{ asset('storage/documents/'.$personnel->service_number.'/'.$document->file) }}" data-lightbox="documents"  data-title="{{ strtoupper($document->title) }}">
+												<img src="{{ asset('storage/documents/'.$personnel->service_number.'/'.$document->file) }}" width="80px">
+											</a>
+										</li>
+										<li>{{ strtoupper($document->title) }}</li>
+									</ul>
+								@endforeach
+							@else
+								<tr>
+									<td colspan="2" style="text-align:center;">No Documents Uploaded</td>
+								</tr>
+							@endif
+						</div>
+					</fieldset>
+
+					{{-- ASSIGN NEW COURSE --}}
+					<form action="{{ route('personnel_doc_upload', $personnel->id) }}" method="POST" enctype="multipart/form-data">
+						@csrf
+						<h6 class="center white-text">ASSIGN A NEW COURSE</h6>
+						<div class="row select" style="display: flex; justify-content: center; align-items: center;">
+							<div class="file-field col s12 l9 input-field">
+								<div class="uploadBtn">
+									<span>SELECT SCANNED FILES</span>
+									<input type="file" name="file[]" id="file" accept="image/*" multiple>
+								</div>
+								<div class="file-path-wrapper">
+									<input class="file-path validate" type="text" placeholder="Upload one or more files">
+								</div>
+							</div>
+							<div class="col s12 l3">
+								<button class="submit btn waves-effect waves-light" type="submit"><i class="material-icons right">add</i>ADD DOCUMENT(s)</button>
+							</div>
+						</div>
+					</form>
+
 					{{-- LOCAL COURSES --}}
 					<fieldset style="border:2px solid #ccc; padding: 15px 10px 10px 10px;">
 						<legend style="border:0px solid #ccc; padding:4px 10px; font-weight:bold;">FOREIGN COURSES ATTENDED</legend>
@@ -170,7 +374,28 @@
 
 @push('scripts')
     <script>
-        $(function() {
-        });
+		lightbox.option({
+		'resizeDuration': 200,
+		'wrapAround': true,
+		'fitImagesInViewport': true,
+		'maxHeight': 800,
+		'disableScrolling': false
+		});
+		$(function() {
+			$('.delete').click(function(event){
+				event.preventDefault();
+				if(confirm("Are you sure you want to delete personnel?")){
+					$('#deletePersonnel').submit();
+				}
+			});
+			$('.deleteDocument').click(function(event){
+				event.preventDefault();
+				
+				if(confirm("Are you sure you want to delete document?")){
+					event.currentTarget.nextElementSibling.submit();
+				}
+			});
+			$('.datepicker').datepicker();
+		});
     </script>
 @endpush

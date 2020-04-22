@@ -702,7 +702,7 @@ table tbody tr td .recieptBtn {
   display: none !important;
 }
 
-.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .dataTables_wrapper #users-table tfoot tr th:nth-child(8) input {
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .dataTables_wrapper #users-table tfoot tr th:nth-child(9) input {
   display: none !important;
 }
 
@@ -767,13 +767,68 @@ table tbody tr td .recieptBtn {
   margin-right: 20px;
 }
 
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap fieldset {
+  border: none;
+  border-top: 2px solid #ccc;
+  padding: 15px 10px 10px 10px;
+}
+
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap fieldset legend {
+  border: 0px solid #ccc;
+  padding: 4px 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap fieldset .docWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap fieldset .docWrapper ul {
+  width: 140px;
+  height: auto;
+  padding: 12px;
+  background: rgba(238, 238, 238, 0.7);
+  margin: 0 8px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap fieldset .docWrapper ul #delete {
+  display: flex;
+  width: 25px;
+  height: 25px;
+  background: #fff;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+  position: absolute;
+  top: -12px;
+  right: -12px;
+}
+
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap fieldset .docWrapper ul #delete:hover {
+  color: red;
+}
+
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap fieldset .docWrapper ul li {
+  text-align: center;
+}
+
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap fieldset .docWrapper ul li:last-child {
+  font-size: 12px;
+}
+
 .app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .assignCourse {
   padding: 12px 12px 20px 12px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  position: -webkit-sticky;
-  position: sticky;
+  position: static;
   bottom: 2px;
   background: #fff;
   background: linear-gradient(90deg, var(--primary-bg-dark) 0%, var(--primary-bg-light) 100%);

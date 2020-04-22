@@ -55,4 +55,16 @@ class User extends Authenticatable
     {
         return ucwords($value);
     } 
+    
+    public function documents(){
+        return $this->hasMany('App\Document');
+    }
+    
+    public function progressions(){
+        return $this->hasMany('App\Progression');
+    }
+    
+    public function postings(){
+        return $this->hasMany('App\Posting');
+    }
 }

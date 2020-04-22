@@ -1,11 +1,11 @@
-@extends('layouts.app', ['title' => 'Contract Staff Records'])
+@extends('layouts.app', ['title' => 'Junior Staff Records'])
 
 @section('content')
     <div class="my-content-wrapper">
         <div class="content-container">
             <div class="sectionWrap">
                 {{-- SALES HEADING --}}
-                <h6 class="center sectionHeading">CONTRACT STAFF RECORDS</h6>
+                <h6 class="center sectionHeading">JUNIOR STAFF RECORDS</h6>
 
                 {{-- SALES TABLE --}}
                 <div class="sectionTableWrap z-depth-1">
@@ -65,7 +65,7 @@
                 "lengthMenu": [[4, 10, 25, 50, 100, -1], [4, 10, 25, 50, 100, "All"]],
                 processing: true,
                 serverSide: true,
-                ajax:  `{!! route('personnel_get_contract') !!}`,
+                ajax:  `{!! route('personnel_get_archive') !!}`,
                 columns: [
                     {
                         "data": "id",

@@ -18,6 +18,7 @@
                                 <th>Service No</th>
                                 <th>GL</th>
                                 <th>Categoty</th>
+                                <th>State of Origin</th>
                                 <th>Directorate</th>
                                 <th></th>
                             </tr>
@@ -30,6 +31,7 @@
                                 <th>Service No</th>
                                 <th>GL</th>
                                 <th>Categoty</th>
+                                <th>State of Origin</th>
                                 <th>Directorate</th>
                                 <th></th>
                             </tr>
@@ -77,6 +79,7 @@
                     { data: 'service_number', name: 'service_number'},
                     { data: 'gl', name: 'gl'},
                     { data: 'category', name: 'category'},
+                    { data: 'soo', name: 'soo'},
                     { data: 'directorate', name: 'directorate'},
                     { data: 'view', name: 'view', "orderable": false, "searchable": false}
                 ],

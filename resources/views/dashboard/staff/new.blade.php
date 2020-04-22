@@ -129,6 +129,10 @@
 									<option value="senior">Senior</option>
 									<option value="military">Military</option>
 									<option value="contract">Contract</option>
+									<option value="transfered">Transfered</option>
+									<option value="retired">Retired</option>
+									<option value="resigned">Resigned</option>
+									<option value="dismissed">Dismissed</option>
 								</select>
 								@if ($errors->has('category'))
 									<span class="helper-text red-text">

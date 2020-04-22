@@ -128,6 +128,10 @@
 									<option value="senior" {{ ($user->category == 'Senior' ? 'selected' : '') }}>Senior</option>
 									<option value="military" {{ ($user->category == 'Military' ? 'selected' : '') }}>Military</option>
 									<option value="contract" {{ ($user->category == 'Contract' ? 'selected' : '') }}>Contract</option>
+									<option value="transfered" {{ ($user->category == 'Transfered' ? 'selected' : '') }}>Transfered</option>
+									<option value="retired" {{ ($user->category == 'Retired' ? 'selected' : '') }}>Retired</option>
+									<option value="resigned" {{ ($user->category == 'Resigned' ? 'selected' : '') }}>Resigned</option>
+									<option value="dismissed" {{ ($user->category == 'Rismissed' ? 'selected' : '') }}>Dismissed</option>
 								</select>
 								@if ($errors->has('category'))
 									<span class="helper-text red-text">
@@ -145,7 +149,7 @@
 								<label for="directorate">Directorate</label>
 							</div>
 							<div class="input-field col s12 l2 right">
-								<button class="submit btn waves-effect waves-light right" type="submit"><i class="material-icons right">send</i>REGISTER</button>
+								<button class="submit btn waves-effect waves-light right" type="submit"><i class="material-icons right">send</i>UPDATE</button>
 							</div>
 						</div>
 					</form>
