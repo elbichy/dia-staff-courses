@@ -132,9 +132,11 @@
                         </a>
                         <div class="collapsible-body">
                         <ul>
-                            <li class="{{(request()->segment(3) == 'new') ? 'active' : ''}}">
-                                <a href="/dashboard/personnel/new">Register New</a>
-                            </li>
+                            @if(auth()->user()->isAdmin)
+                                <li class="{{(request()->segment(3) == 'new') ? 'active' : ''}}">
+                                    <a href="/dashboard/personnel/new">Register New</a>
+                                </li>
+                            @endif
                             <li class="{{(request()->segment(3) == 'military') ? 'active' : ''}}">
                                 <a href="/dashboard/personnel/military">Military Staff</a>
                             </li>
@@ -160,6 +162,7 @@
                 </li>
 
                 {{-- COURSES --}}
+                @if(auth()->user()->isTraining)
                 <li class="no-padding">
                     <ul class="collapsible collapsible-accordion">
                     <li class="{{ request()->segment(2) == 'courses' ? 'active' : '' }}">
@@ -179,6 +182,7 @@
                     </li>
                     </ul>
                 </li>
+                @endif
 
                 {{-- OTHER MENU RIGHT FOR MOBILE DEVICES --}}
                 <li class="hide-on-med-and-up col s12" style="border-top:1px solid rgba(0,0,0, 0.3); justify-self: flex-end; margin-top: auto;">

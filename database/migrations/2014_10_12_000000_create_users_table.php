@@ -31,6 +31,7 @@ class CreateUsersTable extends Migration
             $table->boolean('isAdmin')->default(0);
             $table->boolean('isTraining')->default(0);
             $table->boolean('isCDI')->default(0);
+            $table->string('passport')->nullable();
             $table->timestamps();
         });
     }

@@ -729,9 +729,23 @@ table {
                         .infoWrap{
                             flex:1;
                             color:#444;
-                            h6{
-                                font-weight: bold;
+                            // border: 2px solid red;
+                            .row{
+                                .col{
+                                    margin-bottom: 18px;
+                                    .detailWrap{
+                                        background:rgba($color: #eee, $alpha: 0.7); 
+                                        padding:6px 6px;
+                                        h6{
+                                            font-weight: bold;
+                                            margin: 0;
+                                            padding: 4px 0;
+                                            font-size: 15px;
+                                        }
+                                    }
+                                }
                             }
+                            
                             .douButtons{
                                 // border: 1px solid red;
                                 height: 60px;
@@ -742,6 +756,31 @@ table {
                                     margin-right: 20px;
                                 }
                             }
+                        }
+                        .sideColumn{
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            .profilePic{
+                                width:150px; height:160px; 
+                                // border:1px solid #ccc;
+                                margin-bottom: 6px;
+                                overflow: hidden;
+                            }
+
+                            a{
+                                margin-bottom: 6px;
+                                i{
+                                    margin-right: 6px;
+                                }
+                            }
+                            a.delete{
+                                background: var(--secondary-bg-dark);
+                                &:hover{
+                                    background: var(--secondary-bg-light);
+                                }
+                            }
+
                         }
                     }
                     fieldset{
@@ -819,7 +858,7 @@ table {
                         .button{
                             background: #174d67;
                         }
-                        input{
+                        .datepicker{
                             color: #fff;
                             border-color: #fff;
                         }

@@ -752,8 +752,20 @@ table tbody tr td .recieptBtn {
   color: #444;
 }
 
-.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .profile .infoWrap h6 {
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .profile .infoWrap .row .col {
+  margin-bottom: 18px;
+}
+
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .profile .infoWrap .row .col .detailWrap {
+  background: rgba(238, 238, 238, 0.7);
+  padding: 6px 6px;
+}
+
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .profile .infoWrap .row .col .detailWrap h6 {
   font-weight: bold;
+  margin: 0;
+  padding: 4px 0;
+  font-size: 15px;
 }
 
 .app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .profile .infoWrap .douButtons {
@@ -765,6 +777,35 @@ table tbody tr td .recieptBtn {
 
 .app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .profile .infoWrap .douButtons a {
   margin-right: 20px;
+}
+
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .profile .sideColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .profile .sideColumn .profilePic {
+  width: 150px;
+  height: 160px;
+  margin-bottom: 6px;
+  overflow: hidden;
+}
+
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .profile .sideColumn a {
+  margin-bottom: 6px;
+}
+
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .profile .sideColumn a i {
+  margin-right: 6px;
+}
+
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .profile .sideColumn a.delete {
+  background: var(--secondary-bg-dark);
+}
+
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .profile .sideColumn a.delete:hover {
+  background: var(--secondary-bg-light);
 }
 
 .app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap fieldset {
@@ -850,7 +891,7 @@ table tbody tr td .recieptBtn {
   background: #174d67;
 }
 
-.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .assignCourse input {
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .assignCourse .datepicker {
   color: #fff;
   border-color: #fff;
 }

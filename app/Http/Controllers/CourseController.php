@@ -42,7 +42,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        if(auth()->user()->isTraining || auth()->user()->isCDI){
+        if(auth()->user()->isTraining){
             return view('dashboard.course.new');
         }else{
             return redirect()->back();

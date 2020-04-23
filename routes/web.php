@@ -53,7 +53,7 @@ Route::group(['prefix' => 'dashboard'], function () {
 		Route::post('/new/store', 'PersonnelController@store')->name('personnel_store_new');
 		Route::get('/{user}/edit', 'PersonnelController@edit')->name('personnel_edit');
 		Route::put('/{user}/update', 'PersonnelController@update')->name('personnel_update');
-		Route::get('/{user}/delete', 'PersonnelController@destroy')->name('personnel_delete');
+		Route::delete('/{user}/delete', 'PersonnelController@destroy')->name('personnel_delete');
 		Route::post('/{user}/document/upload', 'PersonnelController@upload_document')->name('personnel_doc_upload');
 
 		Route::put('/assign/{user}/course', 'PersonnelController@assign')->name('personnel_assign_course');

@@ -158,7 +158,11 @@ class PersonnelController extends Controller
     // CREATE
     public function create()
     {
-        return view('dashboard.staff.new');
+        if(auth()->user()->isAdmin){
+            return view('dashboard.staff.new');
+        }else{
+            return redirect()->back();
+        }
     }
 
    
@@ -182,6 +186,21 @@ class PersonnelController extends Controller
             'directorate' => 'required|string'
         ]);
 
+        $image_name = NULL;
+        if($request->has('passport')){
+
+            $val = $request->validate([
+                'passport' => 'required|image|mimes:jpeg,png,jpg,|max:800',
+            ]);
+
+            $file = $request->file('passport');
+            $image = $file->getClientOriginalName();
+            $ext = pathinfo($image, PATHINFO_EXTENSION);
+            $image_name = $request->service_number.'.'.$ext;
+            $file->storeAs('public/documents/'.$request->service_number.'/passport/', $image_name);
+            // $image->storeAs('public/documents/'.$request->service_number.'/passport/', $image->getClientOriginalName());
+        }
+
         $personnel = User::create([
             'service_number' => $request->service_number,
             'servicename' => $request->servicename,
@@ -193,12 +212,27 @@ class PersonnelController extends Controller
             'lgoo' => $request->lgoo,
             'gl' => $request->gl,
             'category' => $request->category,
-            'directorate' => $request->directorate
+            'directorate' => $request->directorate,
+            'passport' => $image_name
         ]);
 
         if($personnel){
+            if($request->has('file')){
+
+                $images = $request->file('file');
+                foreach($images as $image)
+                {
+                    $file_name = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+                    $image->storeAs('public/documents/'.$personnel->service_number.'/', $image->getClientOriginalName());
+
+                    $upload = User::find($personnel->id)->documents()->create([
+                        'title' => $file_name,
+                        'file' => $image->getClientOriginalName()
+                    ]);
+                }
+            }
             Alert::success('Personnel record added successfully!', 'Success!')->autoclose(2500);
-            return redirect()->route('personnel_new');
+            return redirect()->back();
         }
     }
 
@@ -233,7 +267,34 @@ class PersonnelController extends Controller
     
     public function update(Request $request, User $user)
     {
-        $update = response()->json($user->update($request->all()));
+        $image_name = $user->passport;
+        if($request->has('passport')){
+
+            $val = $request->validate([
+                'passport' => 'required|image|mimes:jpeg,png,jpg,|max:80',
+            ]);
+
+            $file = $request->file('passport');
+            $image = $file->getClientOriginalName();
+            $ext = pathinfo($image, PATHINFO_EXTENSION);
+            $image_name = $request->service_number.'.'.$ext;
+            $file->storeAs('public/documents/'.$request->service_number.'/passport/', $image_name);
+        }
+
+        $update = response()->json($user->update([
+            'service_number' => $request->service_number,
+            'servicename' => $request->servicename,
+            'fullname' => $request->fullname,
+            'gender' => $request->gender,
+            'dob' => $request->dob,
+            'doe' => $request->doe,
+            'soo' => $request->soo,
+            'lgoo' => $request->lgoo,
+            'gl' => $request->gl,
+            'category' => $request->category,
+            'directorate' => $request->directorate,
+            'passport' => $image_name
+        ]));
         if($update){
             Alert::success('Profile updated successfully!', 'Success!')->autoclose(2500);
             return redirect()->route('personnel_profile', $user->id);
@@ -346,8 +407,9 @@ class PersonnelController extends Controller
 
     public function destroy(User $user)
     {
+        Storage::deleteDirectory('public/documents/'.$user->service_number);
         $user->delete();
-        Alert::success('Staff record deleted successfully!', 'Success!')->autoclose(2500);
+        Alert::success('Personnel record deleted successfully!', 'Success!')->autoclose(2500);
         return redirect()->route('personnel_all');
     }
 

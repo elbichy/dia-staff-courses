@@ -12,7 +12,7 @@
                     <p class="formMsg blue lighten-5 left-align">
                         Enter the personnel's information and submit.
                     </p>
-					<form action="{{ route('personnel_store_new') }}" method="POST" name="create_form" id="create_form">
+					<form action="{{ route('personnel_store_new') }}" method="POST" enctype="multipart/form-data" name="create_form" id="create_form">
 						@csrf
 						<div class="row">
 							<div class="input-field col s12 l2">
@@ -93,7 +93,7 @@
 								@endif
 								<label for="lgoo">LG (origin)</label>
 							</div>
-							<div class="col s12 l2">
+							<div class="col s12 l3">
 								<label for="gl">Grade Level</label>
 								<select id="gl" name="gl" class="browser-default">
 									<option disabled selected>Select GL</option>
@@ -121,7 +121,7 @@
 									</span>
 								@endif
 							</div>
-							<div class="col s12 l2">
+							<div class="col s12 l3">
 								<label for="category">Category</label>
 								<select id="category" name="category" class="browser-default">
 									<option disabled selected>Select Categoty</option>
@@ -149,7 +149,26 @@
 								@endif
 								<label for="directorate">Directorate</label>
 							</div>
-							<div class="input-field col s12 l2 right">
+
+							<div class="file-field col s12 l5 input-field">
+								<div class="uploadBtn">
+									<span>SELECT IMAGE</span>
+									<input type="file" name="passport" id="passport" accept="image/*">
+								</div>
+								<div class="file-path-wrapper">
+									<input class="file-path validate" type="text" placeholder="Upload personnel passport photograph">
+								</div>
+							</div>
+							<div class="file-field col s12 l5 input-field">
+								<div class="uploadBtn">
+									<span>SELECT SCANNED FILES</span>
+									<input type="file" name="file[]" id="file" accept="image/*" multiple>
+								</div>
+								<div class="file-path-wrapper">
+									<input class="file-path validate" type="text" placeholder="Upload one or more files">
+								</div>
+							</div>
+							<div class="col s12 l2" style="display: flex; justify-content: flex-end; align-items: flex-end; height: 80px;">
 								<button class="submit btn waves-effect waves-light right" type="submit"><i class="material-icons right">send</i>REGISTER</button>
 							</div>
 						</div>

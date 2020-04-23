@@ -12,11 +12,11 @@
                     <p class="formMsg blue lighten-5 left-align">
                         Edit the personnel's information and submit.
                     </p>
-					<form action="{{ route('personnel_update', $user->id) }}" method="POST" name="create_form" id="create_form">
+					<form action="{{ route('personnel_update', $user->id) }}" method="POST" enctype="multipart/form-data" name="create_form" id="create_form">
 						@method('PUT')
 						@csrf
 						<div class="row">
-							<div class="input-field col s12 l2">
+							<div class="input-field col s12 l3">
 								<input id="service_number" name="service_number" type="text" value="{{ $user->service_number }}">
 								@if ($errors->has('service_number'))
 									<span class="helper-text red-text">
@@ -25,7 +25,7 @@
 								@endif
 								<label for="service_number">Service No.</label>
 							</div>
-							<div class="input-field col s12 l2">
+							<div class="input-field col s12 l3">
 								<input id="fullname" name="fullname" type="text" value="{{ $user->fullname }}">
 								@if ($errors->has('fullname'))
 									<span class="helper-text red-text">
@@ -34,7 +34,7 @@
 								@endif
 								<label for="fullname">Fullname</label>
 							</div>
-							<div class="input-field col s12 l2">
+							<div class="input-field col s12 l3">
 								<input id="servicename" name="servicename" type="text" value="{{ $user->servicename }}">
 								@if ($errors->has('servicename'))
 									<span class="helper-text red-text">
@@ -43,7 +43,7 @@
 								@endif
 								<label for="servicename">Service Name</label>
 							</div>
-							<div class="input-field col s12 l2">
+							<div class="input-field col s12 l3">
 								<input id="dob" name="dob" type="text" class="datepicker" required  value="{{ $user->dob }}">
 								@if ($errors->has('dob'))
 									<span class="helper-text red-text">
@@ -53,7 +53,7 @@
 								<label for="dob">Date of Birth</label>
 							</div>
 
-							<div class="col s12 l2">
+							<div class="col s12 l3">
 								<label for="gender">Gender</label>
 								<select id="gender" name="gender" class="browser-default">
 									<option disabled selected>Select Gender</option>
@@ -67,7 +67,7 @@
 									</span>
 								@endif
 							</div>
-							<div class="input-field col s12 l2">
+							<div class="input-field col s12 l3">
 								<input id="doe" name="doe" type="text" class="datepicker" required  value="{{ $user->doe }}">
 								@if ($errors->has('doe'))
 									<span class="helper-text red-text">
@@ -76,7 +76,7 @@
 								@endif
 								<label for="doe">Date of Entry</label>
 							</div>
-							<div class="input-field col s12 l2">
+							<div class="input-field col s12 l3">
 								<input id="soo" name="soo" type="text" value="{{ $user->soo }}">
 								@if ($errors->has('soo'))
 									<span class="helper-text red-text">
@@ -85,7 +85,7 @@
 								@endif
 								<label for="soo">State (origin)</label>
 							</div>
-							<div class="input-field col s12 l2">
+							<div class="input-field col s12 l3">
 								<input id="lgoo" name="lgoo" type="text" value="{{ $user->lgoo }}">
 								@if ($errors->has('lgoo'))
 									<span class="helper-text red-text">
@@ -94,7 +94,7 @@
 								@endif
 								<label for="lgoo">LG (origin)</label>
 							</div>
-							<div class="col s12 l2">
+							<div class="col s12 l4">
 								<label for="gl">Grade Level</label>
 								<select id="gl" name="gl" class="browser-default">
 									<option disabled selected>Select GL</option>
@@ -120,7 +120,7 @@
 									</span>
 								@endif
 							</div>
-							<div class="col s12 l2">
+							<div class="col s12 l4">
 								<label for="category">Category</label>
 								<select id="category" name="category" class="browser-default">
 									<option disabled selected>Select Categoty</option>
@@ -139,7 +139,7 @@
 									</span>
 								@endif
 							</div>
-							<div class="input-field col s12 l2">
+							<div class="input-field col s12 l4">
 								<input id="directorate" name="directorate" type="text" value="{{ $user->directorate }}">
 								@if ($errors->has('directorate'))
 									<span class="helper-text red-text">
@@ -148,7 +148,16 @@
 								@endif
 								<label for="directorate">Directorate</label>
 							</div>
-							<div class="input-field col s12 l2 right">
+							<div class="file-field col s12 l10 input-field">
+								<div class="uploadBtn">
+									<span>SELECT IMAGE</span>
+									<input type="file" name="passport" id="passport" accept="image/*">
+								</div>
+								<div class="file-path-wrapper">
+									<input class="file-path validate" type="text" placeholder="Upload personnel passport photograph">
+								</div>
+							</div>
+							<div class="col s12 l2" style="display: flex; justify-content: flex-end; align-items: flex-end; height: 80px;">
 								<button class="submit btn waves-effect waves-light right" type="submit"><i class="material-icons right">send</i>UPDATE</button>
 							</div>
 						</div>
