@@ -68,6 +68,25 @@ class UsersTableSeeder extends Seeder
                 'isAdmin' => 0,
                 'isTraining' => 0,
                 'isCDI' => 1
+            ],
+            [
+                'fullname' => 'Ibrahim Abdullahi',
+                'servicename' => 'I. Abdullahi',
+                'username' => 'jegason',
+                'service_number' => '66512',
+                'password' => Hash::make('@Suleimanu1'),
+                'gender' => 'male',
+                'directorate' => 'Admin',
+                'soo' => 'Jigawa',
+                'lgoo' => 'Yanleman',
+                'dob' => Carbon::create(1992,01,27,0),
+                'doe' => Carbon::create(1992,01,27,0),
+                'gl' => '9',
+                'category' => 'Senior',
+                'isAdmin' => 0,
+                'isTraining' => 0,
+                'isDirector' => 0,
+                'isCDI' => 0
             ]
         ];
     

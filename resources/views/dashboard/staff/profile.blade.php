@@ -258,31 +258,92 @@
 					@if(auth()->user()->isAdmin || auth()->user()->isCDI)
 						{{-- PERSONNEL DOCUMENTS --}}
 						<fieldset>
-							<legend>PERSONNEL CREDENTIALS</legend>
+							<legend>PERSONNEL DOCUMENTS</legend>
 							<div class="docWrapper">
-								@if(!$personnel->documents->isEmpty())
-									@foreach($personnel->documents as $document)
-										<ul>
-											<a href="#" class="deleteDocument" id="delete"><i class="tiny material-icons">close</i></a>
-											{{-- DELETE DOCUMENT FORM --}}
-											<form action="{{ route('deletePersonnelDocument', $document->id) }}" method="post" id="deletePersonnelDocument">
-												@method('delete')
-												@csrf
-											</form>
+								<div class="segment">
+									<legend>Performance Evaluation</legend>
+									@if(!$personnel->documents->isEmpty())
+										@foreach($personnel->documents as $document)
+											@if($document->type == 'performance evaluation')
+											<ul>
+												<a href="#" class="deleteDocument" id="delete"><i class="tiny material-icons">close</i></a>
+												{{-- DELETE DOCUMENT FORM --}}
+												<form action="{{ route('deletePersonnelDocument', $document->id) }}" method="post" id="deletePersonnelDocument">
+													@method('delete')
+													@csrf
+												</form>
 
-											<li>
-												<a href="{{ asset('storage/documents/'.$personnel->service_number.'/'.$document->file) }}" data-lightbox="documents"  data-title="{{ strtoupper($document->title) }}">
-													<img src="{{ asset('storage/documents/'.$personnel->service_number.'/'.$document->file) }}" width="80px">
-												</a>
-											</li>
-											<li>{{ strtoupper($document->title) }}</li>
-										</ul>
-									@endforeach
-								@else
-									<tr>
-										<td colspan="2" style="text-align:center;">No Documents Uploaded</td>
-									</tr>
-								@endif
+												<li>
+													<a href="{{ asset('storage/documents/'.$personnel->service_number.'/'.$document->file) }}" data-lightbox="documents"  data-title="{{ strtoupper($document->title) }}">
+														<img src="{{ asset('storage/documents/'.$personnel->service_number.'/'.$document->file) }}" width="80px">
+													</a>
+												</li>
+												<li>{{ strtoupper($document->title) }}</li>
+											</ul>
+											@endif
+										@endforeach
+									@else
+										<tr>
+											<td colspan="2" style="text-align:center;">No Documents Uploaded</td>
+										</tr>
+									@endif
+								</div>
+								<div class="segment">
+									<legend>Reports</legend>
+									@if(!$personnel->documents->isEmpty())
+										@foreach($personnel->documents as $document)
+											@if($document->type == 'reports')
+											<ul>
+												<a href="#" class="deleteDocument" id="delete"><i class="tiny material-icons">close</i></a>
+												{{-- DELETE DOCUMENT FORM --}}
+												<form action="{{ route('deletePersonnelDocument', $document->id) }}" method="post" id="deletePersonnelDocument">
+													@method('delete')
+													@csrf
+												</form>
+
+												<li>
+													<a href="{{ asset('storage/documents/'.$personnel->service_number.'/'.$document->file) }}" data-lightbox="documents"  data-title="{{ strtoupper($document->title) }}">
+														<img src="{{ asset('storage/documents/'.$personnel->service_number.'/'.$document->file) }}" width="80px">
+													</a>
+												</li>
+												<li>{{ strtoupper($document->title) }}</li>
+											</ul>
+											@endif
+										@endforeach
+									@else
+										<tr>
+											<td colspan="2" style="text-align:center;">No Documents Uploaded</td>
+										</tr>
+									@endif
+								</div>
+								<div class="segment">
+									<legend>Miscellaneous</legend>
+									@if(!$personnel->documents->isEmpty())
+										@foreach($personnel->documents as $document)
+											@if($document->type == 'miscellaneous')
+											<ul>
+												<a href="#" class="deleteDocument" id="delete"><i class="tiny material-icons">close</i></a>
+												{{-- DELETE DOCUMENT FORM --}}
+												<form action="{{ route('deletePersonnelDocument', $document->id) }}" method="post" id="deletePersonnelDocument">
+													@method('delete')
+													@csrf
+												</form>
+
+												<li>
+													<a href="{{ asset('storage/documents/'.$personnel->service_number.'/'.$document->file) }}" data-lightbox="documents"  data-title="{{ strtoupper($document->title) }}">
+														<img src="{{ asset('storage/documents/'.$personnel->service_number.'/'.$document->file) }}" width="80px">
+													</a>
+												</li>
+												<li>{{ strtoupper($document->title) }}</li>
+											</ul>
+											@endif
+										@endforeach
+									@else
+										<tr>
+											<td colspan="2" style="text-align:center;">No Documents Uploaded</td>
+										</tr>
+									@endif
+								</div>
 							</div>
 						</fieldset>
 						@if(auth()->user()->isAdmin)
@@ -290,7 +351,22 @@
 							<form action="{{ route('personnel_doc_upload', $personnel->id) }}" method="POST" enctype="multipart/form-data">
 								@csrf
 								<div class="row select" style="display: flex; justify-content: center; align-items: center;">
-									<div class="file-field col s12 l9 input-field">
+									<div class="col s12 l4">
+										<label for="document_type">Document Type</label>
+										<select id="document_type" name="document_type" class="browser-default" required>
+											<option disabled selected>Select a document type</option>
+											<option value="performance evaluation">Performance Evaluation</option>
+											<option value="reports">Reports</option>
+											<option value="miscellaneous">Miscellaneous</option>
+										</select>
+										@if ($errors->has('document_type'))
+											<span class="helper-text red-text">
+												<strong>{{ $errors->first('document_type') }}</strong>
+											</span>
+										@endif
+										
+									</div>
+									<div class="file-field col s12 l5 input-field">
 										<div class="uploadBtn">
 											<span>SELECT SCANNED FILES</span>
 											<input type="file" name="file[]" id="file" accept="image/*" multiple>
@@ -386,7 +462,7 @@
 								@method('PUT')
 								@csrf
 								<h6 class="center white-text">ASSIGN A NEW COURSE</h6>
-								<div class="col s12 l10 select">
+								<div class="col s12 l5 select">
 									<select id="course" name="course" class="browser-default" required>
 										<option disabled selected>Select a new course for this personnel</option>
 										@foreach($all_courses as $each_course)
@@ -401,6 +477,15 @@
 											<strong>{{ $errors->first('course') }}</strong>
 										</span>
 									@endif
+								</div>
+								<div class="file-field col s12 l5 input-field">
+									<div class="uploadBtn">
+										<span class="white-text">Upload course report</span>
+										<input type="file" name="file[]" id="file" accept="image/*" multiple>
+									</div>
+									<div class="file-path-wrapper">
+										<input class="file-path validate" type="text" placeholder="Upload one or more files">
+									</div>
 								</div>
 								<button class="submit button btn waves-effect waves-light" type="submit"><i class="material-icons right">add</i>ADD COURSE</button>
 							</form>

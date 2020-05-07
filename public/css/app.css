@@ -825,10 +825,24 @@ table tbody tr td .recieptBtn {
   width: 100%;
   display: flex;
   justify-content: flex-start;
-  flex-wrap: wrap;
 }
 
-.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap fieldset .docWrapper ul {
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap fieldset .docWrapper .segment {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin: 4px;
+  border: 1px dashed #666;
+}
+
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap fieldset .docWrapper .segment legend {
+  text-align: center;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap fieldset .docWrapper .segment ul {
   width: 140px;
   height: auto;
   padding: 12px;
@@ -838,7 +852,7 @@ table tbody tr td .recieptBtn {
   position: relative;
 }
 
-.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap fieldset .docWrapper ul #delete {
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap fieldset .docWrapper .segment ul #delete {
   display: flex;
   width: 25px;
   height: 25px;
@@ -852,15 +866,15 @@ table tbody tr td .recieptBtn {
   right: -12px;
 }
 
-.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap fieldset .docWrapper ul #delete:hover {
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap fieldset .docWrapper .segment ul #delete:hover {
   color: red;
 }
 
-.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap fieldset .docWrapper ul li {
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap fieldset .docWrapper .segment ul li {
   text-align: center;
 }
 
-.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap fieldset .docWrapper ul li:last-child {
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap fieldset .docWrapper .segment ul li:last-child {
   font-size: 12px;
 }
 

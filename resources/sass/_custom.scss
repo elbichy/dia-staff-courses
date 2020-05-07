@@ -798,38 +798,51 @@ table {
                             // border:2px solid green;
                             display:flex;
                             justify-content: flex-start;
-                            flex-wrap: wrap;
-                            ul{
-                                width: 140px;
-                                height: auto;
-                                // border:2px solid orange;
-                                padding: 12px;
-                                // border: 2px solid #eee;
-                                background: rgba($color: #eee, $alpha: 0.7);
-                                margin: 0 8px;
-                                margin-bottom: 20px;
-                                position: relative;
-                                #delete{
-                                    display: flex;
-                                    width: 25px;
-                                    height: 25px;
-                                    background: #fff;
-                                    border-radius: 50%;
-                                    justify-content: center;
-                                    align-items: center;
-                                    color: #333;
-                                    position: absolute;
-                                    top: -12px;
-                                    right: -12px;
-                                    // border: 2px solid #eee;
-                                    &:hover{
-                                        color: red;
-                                    }
-                                }
-                                li{
+                            .segment{
+                                flex:1;
+                                // border:2px solid green;
+                                display:flex;
+                                justify-content: flex-start;
+                                flex-wrap: wrap;
+                                margin:4px;
+                                border:1px dashed #666;
+                                legend{
                                     text-align: center;
-                                    &:last-child{
-                                        font-size: 12px;
+                                    margin-bottom: 10px;
+                                    width: 100%;
+                                }
+                                ul{
+                                    width: 140px;
+                                    height: auto;
+                                    // border:2px solid orange;
+                                    padding: 12px;
+                                    // border: 2px solid #eee;
+                                    background: rgba($color: #eee, $alpha: 0.7);
+                                    margin: 0 8px;
+                                    margin-bottom: 20px;
+                                    position: relative;
+                                    #delete{
+                                        display: flex;
+                                        width: 25px;
+                                        height: 25px;
+                                        background: #fff;
+                                        border-radius: 50%;
+                                        justify-content: center;
+                                        align-items: center;
+                                        color: #333;
+                                        position: absolute;
+                                        top: -12px;
+                                        right: -12px;
+                                        // border: 2px solid #eee;
+                                        &:hover{
+                                            color: red;
+                                        }
+                                    }
+                                    li{
+                                        text-align: center;
+                                        &:last-child{
+                                            font-size: 12px;
+                                        }
                                     }
                                 }
                             }

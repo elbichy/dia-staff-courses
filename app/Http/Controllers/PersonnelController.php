@@ -315,6 +315,7 @@ class PersonnelController extends Controller
                 $image->storeAs('public/documents/'.$user->service_number.'/', $image->getClientOriginalName());
 
                 $upload = User::find($user->id)->documents()->create([
+                    'type' => $request->document_type,
                     'title' => $file_name,
                     'file' => $image->getClientOriginalName()
                 ]);
