@@ -104,6 +104,17 @@ class CourseController extends Controller
     {
         //
     }
+    
+    
+    public function search()
+    {
+        return view('dashboard.course.search');
+    }
+    
+    public function courses_search(Request $request)
+    {
+        return $request;
+    }
 
     /**
      * Update the specified resource in storage.

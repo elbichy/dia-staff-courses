@@ -13,7 +13,7 @@
                         <thead>
                             <tr>
                                 <th>SN</th>
-                                <th>Fullname</th>
+                                <th>Service Name</th>
                                 <th>Gender</th>
                                 <th>Service No</th>
                                 <th>GL</th>
@@ -26,7 +26,7 @@
                         <tfoot>
                             <tr>
                                 <th></th>
-                                <th>Fullname</th>
+                                <th>Service Name</th>
                                 <th>Gender</th>
                                 <th>Service No</th>
                                 <th>GL</th>
@@ -74,7 +74,7 @@
                             return meta.row + meta.settings._iDisplayStart + 1;
                         }, "orderable": false, "searchable": false
                     },
-                    { data: 'fullname', name: 'fullname' },
+                    { data: 'servicename', name: 'servicename' },
                     { data: 'gender', name: 'view'},
                     { data: 'service_number', name: 'service_number'},
                     { data: 'gl', name: 'gl'},

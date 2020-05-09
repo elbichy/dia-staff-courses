@@ -177,6 +177,9 @@
                             <li class="{{(request()->segment(3) == 'all') ? 'active' : ''}}">
                                 <a href="/dashboard/courses/all">All Courses</a>
                             </li>
+                            <li class="{{(request()->segment(3) == 'search') ? 'active' : ''}}">
+                                <a href="/dashboard/courses/search">Search Courses</a>
+                            </li>
                         </ul>
                         </div>
                     </li>

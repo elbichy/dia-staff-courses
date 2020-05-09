@@ -76,7 +76,9 @@ Route::group(['prefix' => 'dashboard'], function () {
 
 		Route::get('/all', 'CourseController@index')->name('courses_all');
 		Route::get('/get_all', 'CourseController@get_all')->name('courses_get_all');
+		Route::get('/search', 'CourseController@search')->name('courses_search');
 		Route::get('/new', 'CourseController@create')->name('courses_new');
+		Route::post('/courses_search', 'CourseController@courses_search')->name('courses_search');
 		Route::post('/new/store', 'CourseController@store')->name('courses_store_new');
 		Route::get('/{course}/delete', 'CourseController@destroy')->name('courses_delete');
 	});
