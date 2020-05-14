@@ -113,7 +113,8 @@ class CourseController extends Controller
     
     public function courses_search(Request $request)
     {
-        return $request;
+        $result = Course::where('title', 'like', "%{$request->title}%")->with('users')->get();
+        return view('dashboard.course.search', compact(['result']));
     }
 
     /**

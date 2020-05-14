@@ -520,7 +520,24 @@ table {
 						padding: 10px 12px!important;
 						margin-bottom: 20px;
 						color: #186e98;
-					}
+                    }
+                    .collapsible{
+                        .collapsible-header{
+                            font-weight: bold;
+                        }
+                        .collapsible-body{
+                            .collection{
+                                .collection-item{
+                                    .secondary-content{
+                                        display: flex;
+                                        i{
+                                            margin-right: 8px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
 					
 				}
 				.sectionTableWrap {

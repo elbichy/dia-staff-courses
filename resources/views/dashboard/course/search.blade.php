@@ -29,7 +29,39 @@
 							</div>
 						</div>
 					</form>
-                </div>
+					@isset($result)
+					@if(count($result) != 0)
+						<p>{{ count($result) }} records found!</p>
+						@foreach($result as $record)
+						<ul class="collapsible">
+							<li>
+								<div class="collapsible-header"><i class="material-icons">done</i>{{ $record->title }}</div>
+								<div class="collapsible-body">
+									<ul class="collection">
+										@foreach($record->users as $user)
+										<li class="collection-item">
+											<div>
+												{{ $user->service_number }} - {{ $user->fullname }}
+												<a href="{{ route('personnel_profile', $user->id) }}" class="secondary-content">
+													<i class="material-icons">person</i>
+													View profile
+												</a>
+											</div>
+										</li>
+										@endforeach
+									</ul>
+								</div>
+							</li>
+						</ul>
+						@endforeach
+					@else
+						
+					<p>0 records found!</p>
+					@endif
+					@endisset
+				</div>
+				
+				
             </div>
         </div>
         <div class="footer z-depth-1">
@@ -41,6 +73,7 @@
 @push('scripts')
 	<script>
 		$(document).ready(function(){
+			$('.collapsible').collapsible();
 			$('.datepicker').datepicker({
 				format: 'yyyy-mm-dd',
 				yearRange: [1940, 2019]

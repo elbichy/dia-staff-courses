@@ -542,6 +542,18 @@ table tbody tr td .recieptBtn {
   color: #186e98;
 }
 
+.app .my-content-wrapper .content-container .sectionWrap .sectionFormWrap .collapsible .collapsible-header {
+  font-weight: bold;
+}
+
+.app .my-content-wrapper .content-container .sectionWrap .sectionFormWrap .collapsible .collapsible-body .collection .collection-item .secondary-content {
+  display: flex;
+}
+
+.app .my-content-wrapper .content-container .sectionWrap .sectionFormWrap .collapsible .collapsible-body .collection .collection-item .secondary-content i {
+  margin-right: 8px;
+}
+
 .app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap {
   width: 95%;
   background: rgba(255, 255, 255, 0.8);
