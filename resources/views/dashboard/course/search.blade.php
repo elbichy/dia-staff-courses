@@ -41,7 +41,7 @@
 										@foreach($record->users as $user)
 										<li class="collection-item">
 											<div>
-												{{ $user->service_number }} - {{ $user->fullname }}
+												{{ $user->service_number }} - {{ $user->servicename }}
 												<a href="{{ route('personnel_profile', $user->id) }}" class="secondary-content">
 													<i class="material-icons">person</i>
 													View profile
