@@ -84,6 +84,12 @@
 										<p>GSS Kubwa, FCT Abuja</p>
 									</div>
 								</div>
+								<div class="col s12 l6">
+									<div class="detailWrap">
+										<h6>Tertiary education</h6>
+										<p>B.Sc Computer Science, Bayero University, Kano</p>
+									</div>
+								</div>
 								
 							</div>
 						</div>
