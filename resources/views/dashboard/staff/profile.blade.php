@@ -72,6 +72,18 @@
 										<p>{{ $local_courses->directorate }}</p>
 									</div>
 								</div>
+								<div class="col s12 l6">
+									<div class="detailWrap">
+										<h6>Primary school education</h6>
+										<p>Model Primary school maitama, FCT Abuja</p>
+									</div>
+								</div>
+								<div class="col s12 l6">
+									<div class="detailWrap">
+										<h6>Secondary school education</h6>
+										<p>GSS Kubwa, FCT Abuja</p>
+									</div>
+								</div>
 								
 							</div>
 						</div>
