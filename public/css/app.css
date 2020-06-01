@@ -837,24 +837,18 @@ table tbody tr td .recieptBtn {
   width: 100%;
   display: flex;
   justify-content: flex-start;
-}
-
-.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap fieldset .docWrapper .segment {
-  flex: 1;
-  display: flex;
-  justify-content: flex-start;
   flex-wrap: wrap;
   margin: 4px;
   border: 1px dashed #666;
 }
 
-.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap fieldset .docWrapper .segment legend {
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap fieldset .docWrapper legend {
   text-align: center;
   margin-bottom: 10px;
   width: 100%;
 }
 
-.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap fieldset .docWrapper .segment ul {
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap fieldset .docWrapper ul {
   width: 140px;
   height: auto;
   padding: 12px;
@@ -864,7 +858,7 @@ table tbody tr td .recieptBtn {
   position: relative;
 }
 
-.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap fieldset .docWrapper .segment ul #delete {
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap fieldset .docWrapper ul #delete {
   display: flex;
   width: 25px;
   height: 25px;
@@ -878,16 +872,49 @@ table tbody tr td .recieptBtn {
   right: -12px;
 }
 
-.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap fieldset .docWrapper .segment ul #delete:hover {
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap fieldset .docWrapper ul #delete:hover {
   color: red;
 }
 
-.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap fieldset .docWrapper .segment ul li {
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap fieldset .docWrapper ul li {
   text-align: center;
 }
 
-.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap fieldset .docWrapper .segment ul li:last-child {
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap fieldset .docWrapper ul li:last-child {
   font-size: 12px;
+}
+
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .educationForm {
+  padding: 0 0 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  position: static;
+  bottom: 2px;
+  background: #fff;
+  border: 2px solid #039be5;
+}
+
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .educationForm h6 {
+  padding: 12px;
+  color: #fff;
+  width: 100%;
+  margin-bottom: 12px;
+  margin-top: 0px;
+  background: linear-gradient(90deg, var(--primary-bg-dark) 0%, var(--primary-bg-light) 100%);
+}
+
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .educationForm .select {
+  padding-left: 0 !important;
+  margin-left: 3px;
+}
+
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .educationForm .button {
+  background: #174d67;
+}
+
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .educationForm .datepicker {
+  border-color: #ccc;
 }
 
 .app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .assignCourse {

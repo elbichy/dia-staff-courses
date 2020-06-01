@@ -60,6 +60,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Document');
     }
     
+    public function education_records(){
+        return $this->hasMany('App\Education');
+    }
+    
     public function progressions(){
         return $this->hasMany('App\Progression');
     }

@@ -812,57 +812,83 @@ table {
                         }
                         .docWrapper{
                             width: 100%;
-                            // border:2px solid green;
                             display:flex;
                             justify-content: flex-start;
-                            .segment{
-                                flex:1;
-                                // border:2px solid green;
-                                display:flex;
-                                justify-content: flex-start;
-                                flex-wrap: wrap;
-                                margin:4px;
-                                border:1px dashed #666;
-                                legend{
-                                    text-align: center;
-                                    margin-bottom: 10px;
-                                    width: 100%;
-                                }
-                                ul{
-                                    width: 140px;
-                                    height: auto;
-                                    // border:2px solid orange;
-                                    padding: 12px;
+                            flex-wrap: wrap;
+                            margin:4px;
+                            border:1px dashed #666;
+                            legend{
+                                text-align: center;
+                                margin-bottom: 10px;
+                                width: 100%;
+                            }
+                            ul{
+                                width: 140px;
+                                height: auto;
+                                // border:2px solid orange;
+                                padding: 12px;
+                                // border: 2px solid #eee;
+                                background: rgba($color: #eee, $alpha: 0.7);
+                                margin: 0 8px;
+                                margin-bottom: 20px;
+                                position: relative;
+                                #delete{
+                                    display: flex;
+                                    width: 25px;
+                                    height: 25px;
+                                    background: #fff;
+                                    border-radius: 50%;
+                                    justify-content: center;
+                                    align-items: center;
+                                    color: #333;
+                                    position: absolute;
+                                    top: -12px;
+                                    right: -12px;
                                     // border: 2px solid #eee;
-                                    background: rgba($color: #eee, $alpha: 0.7);
-                                    margin: 0 8px;
-                                    margin-bottom: 20px;
-                                    position: relative;
-                                    #delete{
-                                        display: flex;
-                                        width: 25px;
-                                        height: 25px;
-                                        background: #fff;
-                                        border-radius: 50%;
-                                        justify-content: center;
-                                        align-items: center;
-                                        color: #333;
-                                        position: absolute;
-                                        top: -12px;
-                                        right: -12px;
-                                        // border: 2px solid #eee;
-                                        &:hover{
-                                            color: red;
-                                        }
+                                    &:hover{
+                                        color: red;
                                     }
-                                    li{
-                                        text-align: center;
-                                        &:last-child{
-                                            font-size: 12px;
-                                        }
+                                }
+                                li{
+                                    text-align: center;
+                                    &:last-child{
+                                        font-size: 12px;
                                     }
                                 }
                             }
+                        }
+                    }
+                    .educationForm{
+                        padding:0 0 20px 0; 
+                        display:flex; 
+                        flex-wrap:wrap; 
+                        align-items:center; 
+                        position: static;
+                        bottom: 2px; 
+                        background: #fff;
+                        border:2px solid #039be5;
+                        h6{
+                            // font-weight: bold;
+                            padding: 12px;
+                            color: #fff;
+                            width: 100%;
+                            margin-bottom: 12px;
+                            margin-top: 0px;
+                            background: linear-gradient(90deg, var(--primary-bg-dark) 0%, var(--primary-bg-light) 100%);
+                        }
+                        .select{
+                            padding-left: 0!important;
+                            margin-left: 3px;
+                        }
+                        .button{
+                            background: #174d67;
+                        }
+                        .datepicker{
+                            // color: #fff;
+                            border-color: #ccc;
+                        }
+                        label{
+                            // color: #fff;
                         }
                     }
                     .assignCourse{

@@ -8,9 +8,11 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Alert;
+use App\Education;
 use App\Document;
 use App\Posting;
 use App\Progression;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -241,7 +243,7 @@ class PersonnelController extends Controller
     public function show(User $user)
     {
         
-        $personnel = User::where('service_number', $user->service_number)->with('documents', 'postings', 'progressions')->first();
+        $personnel = User::where('service_number', $user->service_number)->with('documents', 'postings', 'progressions', 'education_records')->first();
         $foreign_courses = User::where('id', $user->id)->with(['courses' => function ($query) {
             $query->where('type', 'foreign');
         }])->first();
@@ -302,6 +304,43 @@ class PersonnelController extends Controller
     }
 
     
+    // ADD EDUCATION RECORDS
+    public function add_education(Request $request, User $user){
+        // return $user;
+        $validation = $request->validate([
+            'type' => 'required|string',
+            'school_name' => 'required|string',
+            'qualification' => 'required|string',
+            'location' => 'required|string',
+            'start_year' => 'required',
+            'end_year' => 'required'
+        ]);
+
+        $personnel = $user->education_records()->create([
+            'type' => $request->type,
+            'school_name' => $request->school_name,
+            'qualification' => $request->qualification,
+            'location' => $request->location,
+            'course' => $request->course,
+            'grade' => $request->grade,
+            'start_year' => $request->start_year,
+            'end_year' => $request->end_year
+        ]);
+
+        if($personnel){
+            Alert::success('Personnel education record added successfully!', 'Success!')->autoclose(2500);
+            return redirect()->back();
+        }
+    }
+    // REMOVE EDUCATION RECORDS
+    public function delete_education(User $user)
+    {
+        Storage::deleteDirectory('public/documents/'.$user->service_number);
+        $user->delete();
+        Alert::success('Personnel record deleted successfully!', 'Success!')->autoclose(2500);
+        return redirect()->route('personnel_all');
+    }
+
     
     // UPLOAD NEW DOCUMENT
     public function upload_document(Request $request, User $user)
