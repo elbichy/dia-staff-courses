@@ -72,7 +72,13 @@
 										<p>{{ $local_courses->directorate }}</p>
 									</div>
 								</div>
-								<div class="col s12 l6">
+								<div class="col s12 l3">
+									<div class="detailWrap">
+										<h6>Query count</h6>
+										<p>0</p>
+									</div>
+								</div>
+								<div class="col s12 l3">
 									<div class="detailWrap">
 										<h6>Query count</h6>
 										<p>0</p>
@@ -158,15 +164,15 @@
 										<option value="tertiary">Tertiary</option>
 									</select>
 								</div>
-								<div class="input-field col s12 l4">
+								<div class="input-field col s12 l3">
 									<input id="school_name" name="school_name" type="text" class="" required>
 									<label for="school_name">School name</label>
 								</div>
-								<div class="input-field col s12 l5">
+								<div class="input-field col s12 l3">
 									<input id="location" name="location" type="text" class="" placeholder="e.g. Gwagwalada, Abuja Nigeria" required>
 									<label for="location">Location</label>
 								</div>
-								<div class="input-field col s12 l2">
+								<div class="input-field col s12 l3">
 									<select id="qualification" name="qualification" class="browser-default" required>
 										<option value="" disabled="" disabled selected>Qualification</option>
 										<option value="fslc">FSLC</option>
@@ -313,14 +319,14 @@
 									</tr>
 								</thead>
 								<tbody>
-									@if(!$personnel->progressions->isEmpty())
-										@foreach($personnel->progressions as $progressions)
+									@if(!$personnel->appointments->isEmpty())
+										@foreach($personnel->appointments as $appointments)
 											<tr>
-												<td>{{ $progressions->gl }}</td>
-												<td>{{ $progressions->gl_start }}</td>
-												<td>{{ $progressions->gl_end }}</td>
+												<td>{{ $appointments->title }}</td>
+												<td>{{ $appointments->start }}</td>
+												<td>{{ $appointments->end }}</td>
 												<td>
-													<a href="{{ route('personnel_remove_progression', ['user'=>$personnel->id, 'progression'=>$progressions->id]) }}">x</a>
+													<a href="{{ route('personnel_remove_appointment', ['user'=>$personnel->id, 'appointment'=>$appointments->id]) }}">x</a>
 												</td>
 											</tr>
 										@endforeach
@@ -334,12 +340,12 @@
 						</fieldset>
 						@if(auth()->user()->isAdmin)
 							{{-- ADD NEW RECORD --}}
-							<form class="assignCourse row card" action="{{ route('personnel_add_progression', $local_courses->id) }}" method="POST">
+							<form class="assignCourse row card" action="{{ route('personnel_add_appointment', $local_courses->id) }}" method="POST">
 								@method('PUT')
 								@csrf
 								<h6 class="center white-text">ADD A NEW APPOINTMENT PROGRESSION RECORD</h6>
 								<div class="input-field col s12 l3">
-									<input type="text" name="title" class="datepicker">
+									<input type="text" name="title">
 									<label for="title">Title</label>
 									@if ($errors->has('title'))
 										<span class="helper-text red-text">

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Alert;
 use App\Education;
+use App\Appointment;
 use App\Document;
 use App\Posting;
 use App\Progression;
@@ -295,6 +296,8 @@ class PersonnelController extends Controller
             'gl' => $request->gl,
             'category' => $request->category,
             'directorate' => $request->directorate,
+            // 'query' => $request->query,
+            // 'commendation' => $request->commendation,
             'passport' => $image_name
         ]));
         if($update){
@@ -412,6 +415,35 @@ class PersonnelController extends Controller
     {
         $progression->delete();
         Alert::success('Progression removed successfully!', 'Success!')->autoclose(2500);
+        return redirect()->back();
+    }
+
+
+    // ADD NEW APPOINTMENT
+    public function add_appointment(Request $request, User $user)
+    {
+        // return $user;
+        $validation = $request->validate([
+            'title' => 'required|string',
+            'start' => 'required|date',
+            'end' => 'required|date'
+        ]);
+        $record = $user->appointments()->create([
+            'title' => $request->title,
+            'start' => $request->start,
+            'end' => $request->end,
+        ]);
+
+        if($record){
+            Alert::success('Appointment record added successfully!', 'Success!')->autoclose(2500);
+            return redirect()->back();
+        }
+    }
+    // REMOVE A PROGRESSION
+    public function remove_appointment(User $user, Appointment $appointment)
+    {
+        $appointment->delete();
+        Alert::success('Appointment removed successfully!', 'Success!')->autoclose(2500);
         return redirect()->back();
     }
 

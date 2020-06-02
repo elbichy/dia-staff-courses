@@ -148,7 +148,25 @@
 								@endif
 								<label for="directorate">Directorate</label>
 							</div>
-							<div class="file-field col s12 l10 input-field">
+							<div class="input-field col s12 l3">
+								<input id="query" name="query" type="number" value="{{ $user->query }}">
+								@if ($errors->has('query'))
+									<span class="helper-text red-text">
+										<strong>{{ $errors->first('query') }}</strong>
+									</span>
+								@endif
+								<label for="query">No. of Queries</label>
+							</div>
+							<div class="input-field col s12 l3">
+								<input id="commendation" name="commendation" type="number" value="{{ $user->commendation }}">
+								@if ($errors->has('commendation'))
+									<span class="helper-text red-text">
+										<strong>{{ $errors->first('commendation') }}</strong>
+									</span>
+								@endif
+								<label for="commendation">No. of Commendations</label>
+							</div>
+							<div class="file-field col s12 l4 input-field">
 								<div class="uploadBtn">
 									<span>SELECT IMAGE</span>
 									<input type="file" name="passport" id="passport" accept="image/*">

@@ -65,6 +65,9 @@ Route::group(['prefix' => 'dashboard'], function () {
 		Route::put('/progression/{user}/add', 'PersonnelController@add_progression')->name('personnel_add_progression');
 		Route::get('/progression/{user}/remove/{progression}', 'PersonnelController@remove_progression')->name('personnel_remove_progression');
 		
+		Route::put('/appointment/{user}/add', 'PersonnelController@add_appointment')->name('personnel_add_appointment');
+		Route::get('/appointment/{user}/remove/{appointment}', 'PersonnelController@remove_appointment')->name('personnel_remove_appointment');
+		
 		Route::put('/posting/{user}/add', 'PersonnelController@add_posting')->name('personnel_add_posting');
 		Route::get('/posting/{user}/remove/{posting}', 'PersonnelController@remove_posting')->name('personnel_remove_posting');
 	});

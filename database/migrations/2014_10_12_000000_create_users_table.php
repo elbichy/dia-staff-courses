@@ -28,6 +28,8 @@ class CreateUsersTable extends Migration
             $table->string('lgoo')->nullable();
             $table->integer('gl')->nullable();
             $table->string('category')->nullable();
+            $table->integer('query')->nullable();
+            $table->integer('commendation')->nullable();
             $table->boolean('isAdmin')->default(0);
             $table->boolean('isTraining')->default(0);
             $table->boolean('isDirector')->default(0);
