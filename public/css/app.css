@@ -840,6 +840,7 @@ table tbody tr td .recieptBtn {
   flex-wrap: wrap;
   margin: 4px;
   border: 1px dashed #666;
+  padding: 20px 0px 0 20px;
 }
 
 .app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap fieldset .docWrapper legend {
@@ -915,6 +916,25 @@ table tbody tr td .recieptBtn {
 
 .app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .educationForm .datepicker {
   border-color: #ccc;
+}
+
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .uploadDocs {
+  background: linear-gradient(90deg, var(--primary-bg-dark) 0%, var(--primary-bg-light) 100%);
+}
+
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .uploadDocs .uploadBtn {
+  color: #fff;
+  width: 100%;
+  margin-bottom: 12px;
+  margin-top: 3px;
+}
+
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .uploadDocs .button {
+  background: #174d67;
+}
+
+.app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .uploadDocs label {
+  color: #fff;
 }
 
 .app .my-content-wrapper .content-container .sectionWrap .sectionTableWrap .assignCourse {

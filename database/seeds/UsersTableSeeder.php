@@ -29,6 +29,8 @@ class UsersTableSeeder extends Seeder
                 'doe' => Carbon::create(1992,01,27,0),
                 'gl' => '9',
                 'category' => 'Senior',
+                'queries' => 0,
+                'commendations' => 0,
                 'isAdmin' => 1,
                 'isTraining' => 0,
                 'isCDI' => 0
@@ -47,6 +49,8 @@ class UsersTableSeeder extends Seeder
                 'doe' => Carbon::create(1992,01,27,0),
                 'gl' => '9',
                 'category' => 'Senior',
+                'queries' => 0,
+                'commendations' => 0,
                 'isAdmin' => 0,
                 'isTraining' => 1,
                 'isCDI' => 0
@@ -65,6 +69,8 @@ class UsersTableSeeder extends Seeder
                 'doe' => Carbon::create(1992,01,27,0),
                 'gl' => '9',
                 'category' => 'Senior',
+                'queries' => 0,
+                'commendations' => 0,
                 'isAdmin' => 0,
                 'isTraining' => 0,
                 'isCDI' => 1
@@ -83,6 +89,8 @@ class UsersTableSeeder extends Seeder
                 'doe' => Carbon::create(1992,01,27,0),
                 'gl' => '9',
                 'category' => 'Senior',
+                'queries' => 0,
+                'commendations' => 0,
                 'isAdmin' => 0,
                 'isTraining' => 0,
                 'isDirector' => 0,

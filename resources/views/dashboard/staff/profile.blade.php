@@ -74,14 +74,14 @@
 								</div>
 								<div class="col s12 l3">
 									<div class="detailWrap">
-										<h6>Query count</h6>
-										<p>0</p>
+										<h6>Queries</h6>
+										<p>{{ $local_courses->commendations }}</p>
 									</div>
 								</div>
 								<div class="col s12 l3">
 									<div class="detailWrap">
-										<h6>Query count</h6>
-										<p>0</p>
+										<h6>Commendations</h6>
+										<p>{{ $local_courses->queries }}</p>
 									</div>
 								</div>
 							</div>
@@ -477,12 +477,11 @@
 											<td colspan="2" style="text-align:center;">No Documents Uploaded</td>
 										</tr>
 									@endif
-								</div>
 							</div>
 						</fieldset>
 						@if(auth()->user()->isAdmin)
 							{{-- UPLOAD NEW DOCUMENT --}}
-							<form action="{{ route('personnel_doc_upload', $personnel->id) }}" method="POST" enctype="multipart/form-data">
+							<form action="{{ route('personnel_doc_upload', $personnel->id) }}" method="POST" enctype="multipart/form-data" class="uploadDocs">
 								@csrf
 								<div class="row select" style="display: flex; justify-content: center; align-items: center;">
 									<div class="file-field col s12 l9 input-field">
@@ -502,8 +501,8 @@
 						@endif
 					@endif
 
-					{{-- @if(auth()->user()->isTraining || auth()->user()->isCDI)
-						LOCAL COURSES
+					@if(auth()->user()->isTraining || auth()->user()->isCDI)
+						{{-- LOCAL COURSES --}}
 						<fieldset style="border:2px solid #ccc; padding: 15px 10px 10px 10px;">
 							<legend style="border:0px solid #ccc; padding:4px 10px; font-weight:bold;">FOREIGN COURSES ATTENDED</legend>
 							<table class="centered striped">
@@ -539,7 +538,7 @@
 								</tbody>
 							</table>
 						</fieldset>
-						FOREIGN COURSES
+						{{-- FOREIGN COURSESs --}}
 						<fieldset style="border:2px solid #ccc; padding: 15px 10px 10px 10px;">
 							<legend style="border:0px solid #ccc; padding:4px 10px; font-weight:bold;">LOCAL COURSES ATTENDED</legend>
 							<table class="centered striped">
@@ -575,7 +574,32 @@
 								</tbody>
 							</table>
 						</fieldset>
-					@endif --}}
+						@if(auth()->user()->isTraining)
+							{{-- ASSIGN NEW COURSE --}}
+							<form class="assignCourse row card" action="{{ route('personnel_assign_course', $local_courses->id) }}" method="POST">
+								@method('PUT')
+								@csrf
+								<h6 class="center white-text">ASSIGN A NEW COURSE</h6>
+								<div class="col s12 l10 select">
+									<select id="course" name="course" class="browser-default" required>
+										<option disabled selected>Select a new course for this personnel</option>
+										@foreach($all_courses as $each_course)
+											<option value="{{ $each_course->id }}">{{ $each_course->title }}</option>
+										@endforeach
+										@empty($all_courses)
+											<option disabled>No courses at the moment</option>
+										@endempty
+									</select>
+									@if ($errors->has('course'))
+										<span class="helper-text red-text">
+											<strong>{{ $errors->first('course') }}</strong>
+										</span>
+									@endif
+								</div>
+								<button class="submit button btn waves-effect waves-light" type="submit"><i class="material-icons right">add</i>ADD COURSE</button>
+							</form>
+						@endif
+					@endif
 
                 </div>
             </div>

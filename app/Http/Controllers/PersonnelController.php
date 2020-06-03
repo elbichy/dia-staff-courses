@@ -289,15 +289,15 @@ class PersonnelController extends Controller
             'servicename' => $request->servicename,
             'fullname' => $request->fullname,
             'gender' => $request->gender,
+            'directorate' => $request->directorate,
             'dob' => $request->dob,
             'doe' => $request->doe,
             'soo' => $request->soo,
             'lgoo' => $request->lgoo,
             'gl' => $request->gl,
             'category' => $request->category,
-            'directorate' => $request->directorate,
-            // 'query' => $request->query,
-            // 'commendation' => $request->commendation,
+            'queries' => $request->queries,
+            'commendations' => $request->commendations,
             'passport' => $image_name
         ]));
         if($update){
@@ -348,7 +348,6 @@ class PersonnelController extends Controller
     // UPLOAD NEW DOCUMENT
     public function upload_document(Request $request, User $user)
     {
-       
         if($request->has('file')){
             $images = $request->file('file');
             foreach($images as $image)

@@ -817,6 +817,7 @@ table {
                             flex-wrap: wrap;
                             margin:4px;
                             border:1px dashed #666;
+                            padding: 20px 0px 0 20px;
                             legend{
                                 text-align: center;
                                 margin-bottom: 10px;
@@ -891,6 +892,23 @@ table {
                             // color: #fff;
                         }
                     }
+                    .uploadDocs{
+                        background: linear-gradient(90deg, var(--primary-bg-dark) 0%, var(--primary-bg-light) 100%);
+                        .uploadBtn{
+                            // font-weight: bold;
+                            color: #fff;
+                            width: 100%;
+                            margin-bottom: 12px;
+                            margin-top: 3px;
+                        }
+                        
+                        .button{
+                            background: #174d67;
+                        }
+                        label{
+                            color: #fff;
+                        }
+                    }
                     .assignCourse{
                         padding:12px 12px 20px 12px; 
                         display:flex; 
@@ -922,6 +940,7 @@ table {
                             color: #fff;
                         }
                     }
+                    
 				}
 			}
 		}

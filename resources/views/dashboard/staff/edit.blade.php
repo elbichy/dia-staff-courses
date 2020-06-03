@@ -149,22 +149,22 @@
 								<label for="directorate">Directorate</label>
 							</div>
 							<div class="input-field col s12 l3">
-								<input id="query" name="query" type="number" value="{{ $user->query }}">
-								@if ($errors->has('query'))
+								<input id="queries" name="queries" type="number" value="{{ $user->queries }}">
+								@if ($errors->has('queries'))
 									<span class="helper-text red-text">
-										<strong>{{ $errors->first('query') }}</strong>
+										<strong>{{ $errors->first('queries') }}</strong>
 									</span>
 								@endif
-								<label for="query">No. of Queries</label>
+								<label for="queries">No. of Queries</label>
 							</div>
 							<div class="input-field col s12 l3">
-								<input id="commendation" name="commendation" type="number" value="{{ $user->commendation }}">
-								@if ($errors->has('commendation'))
+								<input id="commendations" name="commendations" type="number" value="{{ $user->commendations }}">
+								@if ($errors->has('commendations'))
 									<span class="helper-text red-text">
-										<strong>{{ $errors->first('commendation') }}</strong>
+										<strong>{{ $errors->first('commendations') }}</strong>
 									</span>
 								@endif
-								<label for="commendation">No. of Commendations</label>
+								<label for="commendations">No. of Commendations</label>
 							</div>
 							<div class="file-field col s12 l4 input-field">
 								<div class="uploadBtn">
